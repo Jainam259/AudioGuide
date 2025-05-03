@@ -25,6 +25,7 @@ Database: SQLite
 Audio Format: MP3
 
 📂 Folder Structure (Highlights)
+![Screenshot 2025-05-03 141041](https://github.com/user-attachments/assets/2c08d4a9-406f-4583-863d-378fbff1c6c6)
 
 audioguide2/
 
@@ -35,3 +36,4 @@ models.py, views.py, urls.py: Django app core files.
 audio-player.css, audio-player.js: Custom audio player interface.
 
 index.html, Audio1.html: Web pages for guide content.
+
