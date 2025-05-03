@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audio Guide Website</title>
+  <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+  <link rel="stylesheet" href="{% static 'css/styles1.css' %}">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <!-- Use only the CDN version of boxicons -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel='stylesheet'>
+  <style>
+    /* Global Hero Image Styles */
+    .hero img {
+      width: 100%;
+      height: 600px !important;
+      object-fit: cover;
+    }
+    
+    .hero-section {
+      height: 700px !important;
+    }
+    
+    /* Global image improvements */
+    img {
+      max-width: 100%;
+    }
+    
+    .image-container img,
+    .image-container-sv img {
+      height: 450px !important;
+      object-fit: cover;
+    }
+    
+    .team-member img {
+      width: 100%;
+      height: 400px !important;
+      object-fit: cover;
+    }
+  </style>
+</head>
+
+<body>
+ <header class="navbar">
+    <div class="logo">
+        <span class="logo-part1">Audio</span>
+        <span class="logo-part2">Guide</span>
+    </div>
+  
+    <nav class="menu">
+      <a href="{% url 'index' %}" class="a1 {% if request.path == '/' %}active{% endif %}">Home</a>
+      <a href="{% url 'aboutus' %}" class="a1 {% if request.path == '/aboutus/' %}active{% endif %}">About Us</a>
+      <a href="{% url 'tour' %}" class="a1 {% if request.path == '/tour/' %}active{% endif %}">Tour</a>
+      <a href="{% url 'contact' %}" class="a1 {% if request.path == '/contact/' %}active{% endif %}">Contact</a>
+    </nav>
+  
+    <div class="icons">
+      {% if user.is_authenticated %}
+        <div class="user-name">
+          <a href="{% url 'profile_page' %}" style="text-decoration: none; color: inherit;">{{user.username }}</a>
+        </div>
+        <a href="{% url 'logout' %}" class="menu-item">Logout</a>
+      {% else %}
+        <a href="{% url 'login' %}" class="icon user-icon"><i class='bx bxs-user'></i></a>
+      {% endif%}
+  </div>
+   
+  </header> 
+  
+  
+
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+  <script src="{% static 'script.js' %}"></script>
+
+  <footer class="footer">
+    <div class="footer-container">
+        <div class="footer-left">
+          <div class="logo">
+            <span class="logo-part1">Audio</span>
+            <span class="logo-part2">Guide</span>
+          </div>
+           <br><br>
+            We aim to ensure that you never miss an opportunity to travel.<br><br>
+            Follow Us
+            <div class="social-icons">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-google-plus'></i></a>
+                <a href="#"><i class='bx bxl-pinterest'></i></a>
+                <a href="#"><i class='bx bxl-linkedin'></i></a>
+                <a href="#"><i class='bx bxl-twitter'></i></a>
+            </div>
+        </div>
+  
+        <div class="footer-middle">
+            <h3>Explore</h3>
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'aboutus' %}">About Us</a></li>
+                <li><a href="{% url 'tour' %}">Tours</a></li>
+                <li><a href="{% url 'contact' %}">Contact Us</a></li>
+            </ul>
+        </div>
+  
+        <div class="footer-right">
+            <h3>Contact Info</h3>
+            <p><i class='bx bx-map'></i> Ahmedabad, Gujarat</p>
+            <p><i class='bx bx-phone'></i> (91) 7984460438</p>
+            <p><i class='bx bx-envelope'></i> digitalaudioguide2025@gmail.com</p>
+            <p><i class='bx bx-time'></i> Week Days: 09.00 to 18.00<br>Sunday: Closed</p>
+        </div>
+    </div>
+    <br><br>
+    <p class="copy"> 
+      © 2025 Digital Audio Guide. All Rights Reserved.
+    </p>
+  </footer>
+
+
+
+  </body>
+  </html>

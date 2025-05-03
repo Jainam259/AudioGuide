@@ -1,0 +1,123 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Player Layout</title>
+    <link rel="stylesheet" href="{% static 'css/audio_page.css' %}" />
+</head>
+<body>
+    <div class="audio-player-container">
+        <!-- Header with logo -->
+        <div class="header">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 18.5C12 18.5 18 15 18 11V5.5L12 3L6 5.5V11C6 15 12 18.5 12 18.5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Traveler's Bible
+            </div>
+        </div>
+        
+        <!-- Main content area -->
+        <div class="content">
+            <!-- Main image -->
+            <div class="main-image">
+                <img src="{% static 'images/2.jpeg' %}" alt="Adalaj Stepwell" id="mainImage">
+            </div>
+            
+            <!-- Player information and controls -->
+            <div class="player-info">
+                <div class="info-section">
+                    <h1 class="title" id="audioTitle">
+                        {% if audio_files %} {{ audio_files.0.title }} {% else %} No Audio Available {% endif %}
+                    </h1>
+                    <p class="subtitle" id="audioArtist">
+                        {% if audio_files %} {{ audio_files.0.artist }} {% else %} Unknown Artist {% endif %}
+                    </p>
+                </div>
+                
+                <div class="audio-controls">
+                    <!-- Timeline with progress -->
+                    <div class="timeline">
+                        <span class="time current-time">0:00</span>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress" id="progressBar"></div>
+                                <div class="progress-thumb" id="progressThumb"></div>
+                            </div>
+                        </div>
+                        <span class="time total-time">0:00</span>
+                    </div>
+                    
+                    <!-- Playback control buttons -->
+                    <div class="playback-controls">
+                        <button class="control-button previous">⏮️</button>
+                        <button class="control-button play-pause" id="playPauseBtn">▶️</button>
+                        <button class="control-button next">⏭️</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Thumbnail -->
+        <div class="thumbnail">
+            <img src="{% static 'images/2.jpeg' %}" alt="Adalaj Stepwell" id="thumbnailImage">
+        </div>
+    </div>
+
+    <!-- Hidden audio element -->
+    {% if audio_files %}
+        <audio id="audioElement" src="{{ audio_files.0.file_path.url }}"></audio>
+    {% else %}
+        <audio id="audioElement"></audio>
+    {% endif %}
+
+    <!-- List of audio files -->
+    <div class="audio-list">
+        <h2>Available Tracks</h2>
+        <ul>
+            {% for audio in audio_files %}
+                <li>
+                    <button class="audio-btn" onclick="playAudio('{{ audio.file_path.url }}', '{{ audio.title }}', '{{ audio.artist }}')">
+                        {{ audio.title }} - {{ audio.artist }}
+                    </button>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <script>
+
+
+    window.playAudio = function(src, title, artist) {
+        const audioElement = document.getElementById('audioElement');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+    
+        // Check if the same audio is already playing
+        if (audioElement.src !== src) {
+            audioElement.pause(); // Stop current audio
+            audioElement.src = src; // Change source
+            audioElement.load(); // Reload the new audio
+            audioElement.play(); // Play new audio
+        } else {
+            // Toggle play/pause if the same track is clicked
+            if (audioElement.paused) {
+                audioElement.play();
+            } else {
+                audioElement.pause();
+            }
+        }
+    
+        playPauseBtn.textContent = audioElement.paused ? '▶️' : '⏸️'; // Update button icon
+        document.getElementById('audioTitle').textContent = title;
+        document.getElementById('audioArtist').textContent = artist;
+    };
+    </script>
+</body>
+</html>
+
+
+
+
+

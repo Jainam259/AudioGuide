@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Guide Website</title>
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+
+    <link rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel='stylesheet'>
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  </head>
+  <body>
+
+    <!-- Header Section -->
+    <header class="hero">
+      <img src="{% static 'images/background/contactus.jpg' %}"
+        alt="Contact Page">
+      <div class="overlay">
+        <h1>Contact Us</h1>
+      </div>
+    </header>
+    <!--Ended Header Section -->
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+      <ul>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li>></li>
+        <li class="current">Contact Us</li>
+      </ul>
+    </nav>
+    <!-- End Breadcrumb -->
+
+    <!-- Contact Section -->
+    <div class="contact-section">
+      <h1>We are here</h1>
+      <h2>Feel free to reach out</h2>
+      <p>Have questions about our audio guides or need assistance planning your
+        tour? Our team is ready to help you make the most of your cultural
+        experience in Gujarat.</p>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="container">
+      <form action="{% url 'contact' %}" method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label for="name"><i class="fas fa-user"></i> Your Name *</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="email"><i class="fas fa-envelope"></i> Email *</label>
+          <input type="email" id="email" name="email"
+            placeholder="Enter your email address" required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone"><i class="fas fa-phone"></i> Phone *</label>
+          <input type="tel" id="phone" name="phone"
+            placeholder="Enter your phone number" required>
+        </div>
+
+        <div class="form-group">
+          <label for="message"><i class="fas fa-comment-alt"></i> Message
+            *</label>
+          <textarea id="message" name="message"
+            placeholder="How can we help you?" required></textarea>
+        </div>
+
+        <div class="form-group text-center">
+          <button type="submit" class="btn">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Contact Info Cards -->
+    <div class="info-section">
+      <div class="contact-card">
+        <i class="fas fa-map-marker-alt"></i>
+        <h3>Address</h3>
+        <p>Ahmedabad,</p>
+        <p>Gujarat, India</p>
+      </div>
+
+      <div class="contact-card">
+        <i class="fas fa-phone-alt"></i>
+        <h3>Phone</h3>
+        <p>Please call us and we'll be happy to assist you</p>
+        <p><a href="tel:+919016488755">(+91) 9016488755</a></p>
+      </div>
+
+      <div class="contact-card">
+        <i class="fas fa-envelope"></i>
+        <h3>Email Address</h3>
+        <p>Please email us and we'll be happy to assist you</p>
+        <p><a
+            href="mailto:digitalaudioguide2024@gmail.com">digitalaudioguide2024@gmail.com</a></p>
+      </div>
+    </div>
+
+    <!-- Map Section -->
+    <div class="map-section">
+      <div class="section-title">
+        <h2>Find Us</h2>
+        <p>Visit us in Gujarat, India</p>
+      </div>
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2947998.780971509!2d68.6852282!3d22.3944143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959051f5f0ef795%3A0x861bd887ed54522e!2sGujarat!5e0!3m2!1sen!2sin!4v1708500293123!5m2!1sen!2sin",
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+
+
+    <!-- start -->
+    <div class="hero-section">
+      <h1>Discover the beauty and <br>culture of your destination</h1>
+      <a href="{% url 'tour' %}"><button class="hero-button">Trending Tour</button></a>
+    </div>
+    <!-- end -->
+
+  </body>
+</html>
+{% endblock %}

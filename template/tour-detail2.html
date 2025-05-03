@@ -1,0 +1,551 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Audio Guide UI</title>
+        <link rel="stylesheet" href="{% static 'css/tour-detail2.css' %}">
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel='stylesheet'>
+        <link rel="stylesheet" href="{% static 'css/boxicons.min.css' %}">
+    </head>
+    <body>
+
+        <!-- Header Section -->
+        <header class="hero">
+            <img src="{% static 'images/background/akshar.jpg' %}"
+                alt="Tour Place">
+            <div class="overlay">
+                <h1>Tour Detail</h1>
+            </div>
+        </header>
+        <!--Ended Header Section -->
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li>></li>
+                <li class="current">Tour Detail</li>
+            </ul>
+        </nav>
+        <!-- End Breadcrumb -->
+
+        <!--Start of Image and Places -->
+        <div class="container">
+            <aside class="sidebar">
+                <button class="search-btn">Search Places</button>
+                <div class="categories">
+                    <h3>Cities</h3>
+                    <ul>
+                        <li> <a href="{% url 'ahmedabad' %}"> Ahmedabad </a>
+                        </li>
+                        <li> <a href="#"> Surat </a> </li>
+                        <li> <a href="#"> Amreli </a> </li>
+                        <li> <a href="#"> Veraval </a> </li>
+                        <li> <a href="#"> Bhavnagar </a> </li>
+                        <li> <a href="#"> Patan </a> </li>
+                    </ul>
+                    <h3>Nearby Places</h3>
+                    <ul>
+                        <li> <a href="#"> Rani Ki Vav </a> </li>
+                        <li> <a href="#"> The Vintage Car Museum </a> </li>
+                        <li> <a href="#"> Sabarmati Ashram </a> </li>
+                        <li> <a href="#"> Hutheesing Jain Temple </a> </li>
+                        <li> <a href="#"> Jama Masjid </a> </li>
+                        <li> <a href="#"> Jhulta Minar </a> </li>
+                        <li> <a href="#"> Kankaria Lake </a> </li>
+                        <li> <a href="#"> Lal Darwaza </a> </li>
+                        <li> <a href="#"> Sabarmati Riverfront </a> </li>
+                    </ul>
+                </div>
+            </aside>
+
+            <main class="content">
+                <header class="place-header">
+                    <div class="place-info">
+                        <div>
+                            Average Rating: {{ avg_rating }} / 10 <span>
+                                {% for _ in ""|ljust:avg_rating %}
+                                    ⭐
+                                {% endfor %}
+                            </span><br>
+                           Total Ratings: {{ total_ratings }}                    
+                        </div>
+                        <h1>Rani Ki Vav</h1>
+                        <p><span>📍</span> Ahmedabad, Gujarat</p> <br>
+                        <p><span>📞</span> 9106248405</p>
+                    </div>
+                    <div class="audio-section">
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'Audio2' %}" class="audio-btn">Listen
+                            Audio</a>
+                        {% else %}
+                        <a href="#" class="audio-btn">Login To Listen Audio</a>
+                        {% endif %}
+                        <br>
+                        <span class="category">Historical</span>
+                    </div>
+                </header>
+
+                <section class="image-gallery">
+                    <button class="prev">&#10094;</button>
+                    <img src="{% static 'images/TourDetail/ranikivav2.jpg' %}"
+                        alt="Adalaj Stepwell">
+                    <button class="next">&#10095;</button>
+                </section>
+                <div class="thumbnail-gallery">
+                    <img src="{% static 'images/TourDetail/ranikivav1.jpg' %}"
+                        alt="Thumbnail 1">
+                    <img src="{% static 'images/TourDetail/ranikivav3.jpg' %}"
+                        alt="Thumbnail 2">
+                    <img src="{% static 'images/TourDetail/ranikivav4.jpg' %}"
+                        alt="Thumbnail 3">
+                    <img src="{% static 'images/TourDetail/ranikivav5.jpg' %}"
+                        alt="Thumbnail 4">
+                </div>
+                <!--End of Image and Places -->
+
+                <!-- Start of Overview Section -->
+                <section class="overview">
+                    <h2>Overview</h2>
+                    <h3>About the Place:</h3> <br>
+                    <h4>Rani Ki Vav</h4>
+                    <p>Rani Ki Vav (lit. 'The Queen's Stepwell') is a stepwell
+                        situated in the town of Patan in Gujarat state of India.
+                        It is located on the banks of Saraswati river.
+                        Its construction is attributed to Udayamati, daughter
+                        of Khengara of Saurashtra, queen and spouse of the
+                        11th-century Chaulukya king Bhima I. Silted over,
+                        it was rediscovered in 1940s and restored in 1980s by
+                        the Archaeological Survey of India.</p>
+
+                    <p>It has been listed as one of the UNESCO's World Heritage
+                        Sites since 2014. The finest and one of the largest
+                        examples of its kind and designed as an inverted temple
+                        highlighting the sanctity of water, the stepwell is
+                        divided into seven levels of stairs with sculptural
+                        panels; more than 500 principal sculptures and over
+                        a thousand minor ones combine religious, mythological
+                        and secular imagery.HistoryRani ki vav was constructed
+                        during the rule of the Chaulukya dynasty.</p>
+
+                    <p>It is located on the banks of Saraswati river.
+                        Prabandha-Chintamani, composed by the Jain monk
+                        Merutunga in 1304, mentions:
+                        "Udayamati, the daughter of Naravaraha Khengara, built this novel stepwell at Shripattana (Patan) surpassing the glory of the Sahastralinga Tank".
+                        According to it, the stepwell was commissioned in 1063
+                        and was completed after 20 years. It is generally
+                        assumed that it was built in the memory of Bhima I (r.
+                        c. 1022 – 1064) by his queen Udayamati and probably
+                        completed by Udayamati and Karna after his death but
+                        whether she was a widow when she commissioned it is
+                        disputed.</p>
+
+                    <p>Commissariat puts the date of construction to 1032 based
+                        on the architectural similarity to Vimalavasahi temple
+                        on Mount Abu built in the same year. The stepwell was
+                        later flooded by the Saraswati river and silted over. In
+                        1890s, Henry Cousens and James Burgess visited it when
+                        it was completely buried under the earth and only well
+                        shaft and few pillars were visible.</p>
+
+                    <p>They described it as being a huge pit measuring 87 metres
+                        (285 ft). In Travels in Western India, James Tod
+                        mentioned that the material from the stepwell was reused
+                        in the other stepwell built in modern Patan, probably
+                        Trikam Barot ni Vav (Bahadur Singh stepwell). In the
+                        1940s, excavations carried out under the Baroda State
+                        revealed the stepwell.</p>
+
+                    <p>In 1986, a major excavation and restoration was carried
+                        out by the Archaeological Survey of India (ASI). An
+                        image of Udayamati was also recovered during the
+                        excavation. The restoration was carried out from 1981 to
+                        1987. Rani ki vav has been declared a Monument of
+                        National Importance and protected by the ASI.</p>
+
+                    <p>It was added to the list of UNESCO's World Heritage Sites
+                        on 22 June 2014. It was named India's
+                        "Cleanest Iconic Place" at the 2016 Indian Sanitation
+                        Conference. Architecture Rani ki vav is considered as
+                        the finest and one of the largest example of stepwell
+                        architecture in Gujarat. It was built at the height of
+                        craftsmens’ ability in stepwell construction and the
+                        Maru-Gurjara architecture style, reflecting mastery of
+                        this complex technique and beauty of detail and
+                        proportions.</p>
+
+                    <p>The architecture and sculptures is similar to the
+                        Vimalavasahi temple on Mount Abu and Sun temple at
+                        Modhera. It is classified as a Nanda-type stepwell. It
+                        measures approximately 65 metres (213 ft) long, 20
+                        metres (66 ft) wide and 28 metres (92 ft) deep. The
+                        fourth level is the deepest and leads into a rectangular
+                        tank 9.5 metres (31 ft) by 9.4 metres (31 ft), at a
+                        depth of 23 metres (75 ft). The entrance is located in
+                        the east while the well is located at the westernmost
+                        end and consists of a shaft 10 metres (33 ft) in
+                        diameter and 30 metres (98 ft) deep.</p>
+
+                    <p>The stepwell is divided into seven levels of stairs which
+                        lead down to deep circular well. A stepped corridor is
+                        compartmentalized at regular intervals with pillared
+                        multistory pavilions. The walls, pillars, columns,
+                        brackets and beams are ornamented with carvings and
+                        scroll work.</p>
+
+                    <p>The niches in the side walls are ornamented with
+                        beautiful and delicate figures and sculptures. There are
+                        212 pillars in the stepwell.</p>
+
+                    <h4>Sculptures</h4>
+
+                    <p>There are more than 500 principal sculptures and over a
+                        thousand minor ones combine religious, mythological and
+                        secular imagery, often referencing literary works. The
+                        ornamentation of stepwell depicts the entire universe
+                        inhabited by gods and goddesses; celestial beings; men
+                        and women; monks, priests and laity; animals, fishes and
+                        birds including real and mythical ones; as well as
+                        plants and trees.</p>
+
+                    <p>The stepwell is designed as an underground shrine or
+                        inverted temple. It has spiritual significance and
+                        represents the sanctity of water. The sculptures in
+                        stepwell depicts numerous Hindudeities including Brahma,
+                        Vishnu, Shiva, goddesses (Devi), Ganesha, Kubera,
+                        Lakulisha, Bhairava, Surya, Indra and Hayagriva. The
+                        sculptures associated with Vishnu outnumbers all which
+                        include Sheshashayi Vishnu (Vishnu reclined on thousand
+                        hooded snake Shesha in the celestial ocean), Vishwarupa
+                        Vishnu (Cosmic form of Vishnu), twenty four forms as
+                        well as Dashavatara (ten incarnations) of Vishnu.</p>
+
+                    <p>The sculptures of deities with their families such as
+                        Brahma-Savitri, Uma-Maheshwar and Lakshmi-Narayan are
+                        there. Notable among other sculptures are
+                        Ardhanarishwara as well as large number of goddesses
+                        such as Lakshmi, Parvati, Saraswati, Chamunda,
+                        Durga/Mahishasurmardini with twenty hands, Kshemankari,
+                        Suryani and Saptamatrikas. There are images of Navagraha
+                        (nine planets) as well. There are a large number of
+                        celestial beings (Apsaras).</p>
+
+                    <p>One sculpture of Apsara depicts either applying lipstick
+                        to her lips or chewing on aromatic twig while a man is
+                        tickling her feet. On the northern side of the third
+                        storey pavilion, there is a sculpture of an Apsara
+                        warding off a monkey clinging to her leg and pulling at
+                        her clothes, revealing her seductive body. At her feet,
+                        there is a nude female with a snake around her neck
+                        probably representing an erotic motif.</p>
+
+                    <p>A sculpture of Nagkanya (serpent princess) with long hair
+                        and swan as well as sculptures of celestial dancers in
+                        classical dance positions are there. There are large
+                        number of sculptures portraying women in their everyday
+                        life and activities. One sculpture depicts a woman
+                        combing her hair, adjusting her earring and looking
+                        herself in the mirror.</p>
+
+                    <p>Another sculptures include a woman writing a letter, a
+                        young woman with scorpion climbing her right leg and her
+                        clothes sliding off unknowingly, a young woman pulling a
+                        beard of a dwarf- like man, a woman with fish plate in
+                        her hands with a snake encircling her leg and reaching
+                        out to fish. One sculpture depicts a young women coming
+                        out of bath with her wet hair and a swan catching
+                        droplets of water falling from her hairs as if they are
+                        pearls. These women sculptures are adorned with jewelry
+                        including bangles, earrings, necklaces, waist girdles,
+                        anklets and others as well as with elegant clothes and
+                        well combed hairs.</p>
+
+                    <p>The variety of expressions and emotions are depicted in
+                        them. They represent beauty as well love in its sublime
+                        and seductive form signaling eroticism. There are
+                        sculptures representing maternal love such as a woman
+                        holding her child and pointing to moon to divert his
+                        attention, a woman raising her child high to let him
+                        pick a mango from tree, a woman in a mango grove with
+                        children with her. There are gradually increasing
+                        cantilevered brackets in the well shaft which are
+                        profusely ornamented.</p>
+
+                    <p>There kalpavriksha carvings on the wall repents fertility
+                        and nature worship while kirtimukhas and makaras adorn
+                        the basements and capitals of pillars. On the northern
+                        side wall of entrance of the stepwell, there are
+                        geometric lattice patterns and designs resembling
+                        designs of local textile tradition of Patola. They may
+                        have been adapted from the wood carvings and the
+                        ceilings of the temples. Animal figures of horses,
+                        elephants and lions are used as decoration of pillars
+                        and basement moldings.</p>
+
+                    <h3>In Rani Ki Vav Who Best thing Watch to See</h3>
+                    <p>1.Sculptures</p>
+                    <p>2.Design</p>
+                    <p>3.Purpose</p>
+                    <p>4.UNESCO World Heritage Site:</p>
+
+                    <h3>Additional Info:</h3>
+                    <p>The information of Rani ki Vav is where is this place?
+                        how many days open and when it is open and colse.</p>
+                    <table>
+                        <tr>
+                            <th>Address</th>
+                            <th>Timing</th>
+                            <th>Days</th>
+                            <th>Entry Price</th>
+                        </tr>
+                        <tr>
+                            <td>Mohan Nagar Society, Patan, Gujarat 384265</td>
+                            <td>8:30 AM - 7:00 PM</td>
+                            <td>Sunday - Saturday</td>
+                            <td>550<i class='bx bx-rupee'></i></td>
+                        </tr>
+                    </table>
+
+                    <h3>Contact Number</h3>
+                    <p class="num">+91 9016248405</p>
+                </section>
+                <!-- End of Overview Section -->
+
+                <!-- Start of Location and Gallery Section -->
+                <section class="location-gallery-container">
+                    <!-- Location Section -->
+                    <div class="location">
+                        <h2>Location</h2>
+                        <p>The world is a book, and those who do not travel read
+                            only a page.</p>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3468.322284581023!2d72.09935807511864!3d23.858923978596508!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395c875d1b1b51cb%3A0xa49b8cf62e33ac71!2sRani%20Ki%20Vav!5e1!3m2!1sen!2sin!4v1741680295770!5m2!1sen!2sin"
+                            width="100%" height="450" style="border:0;"
+                            allowfullscreen loading="lazy"></iframe>
+                    </div>
+
+                    <!-- Gallery Section -->
+                    <div class="gallery">
+                        <h2>Gallery</h2>
+                        <p>A photograph is a secret about a secret. The more it
+                            tells you, the less you know.</p> <br>
+                        <div class="gallery-images">
+                            <img
+                                src="{% static 'images/TourDetail/ranikivav1.jpg' %}"
+                                alt="Gallery Image 1">
+                        </div>
+                    </div>
+                </section>
+                <!-- End of Location and Gallery Section -->
+
+                <!-- Add this after the thumbnail-gallery section and before the overview section -->
+                <section class="guide-selection">
+                    <h2>Choose Your Guide For this Monument</h2>
+
+                    <div class="guide-carousel">
+                        <button class="prev-guide">&#10094;</button>
+
+                        <div class="guides-container">
+                            <div class="guide-profile active">
+                                <div class="guide-image">
+                                    <img
+                                        src="{% static 'images/guides/g3.jpg' %}"
+                                        alt="Guide - Patel Dhyan">
+                                </div>
+                                <h3>Patel Dhyan</h3>
+                                <p class="guide-price">Price : 300<i class='bx bx-rupee'></i></p>
+
+                                {% if user.is_authenticated %}
+                                <a href="{% url 'bookguide' guide_name='Patel Dhyan' guide_place='Rani Ki Vav' %}" class="book-guide"> Book Guide </a>
+                                {% else %}
+                                <br> <p class="booking-info">Login to book a
+                                    guide <a href="{% url 'login' %}"
+                                        class="login-link">Login Now</a></p>
+                                {% endif %}
+                            </div>
+
+                            <div class="guide-profile">
+                                <div class="guide-image">
+                                    <img
+                                        src="{% static 'images/guides/g4.jpg' %}"
+                                        alt="Guide - Shreya Patel">
+                                </div>
+                                <h3>Shreya Patel</h3>
+                                <p class="guide-price">Price : 400<i class='bx bx-rupee'></i></p>
+
+                                {% if user.is_authenticated %}
+                                <a href="{% url 'bookguide' guide_name='Shreya Patel' guide_place='Rani Ki Vav' %}" class="book-guide"> Book Guide </a>
+                                {% else %}
+                                <p class="booking-info">Login to book a guide <a
+                                        href="{% url 'login' %}"
+                                        class="login-link">Login Now</a></p>
+                                {% endif %}
+                            </div>
+
+                            <div class="guide-profile">
+                                <div class="guide-image">
+                                    <img
+                                        src="{% static 'images/guides/g1.jpg' %}"
+                                        alt="Guide - Darshan Raval">
+                                </div>
+                                <h3>Darshan Pindoriya</h3>
+                                <p class="guide-price">Price : 300<i class='bx bx-rupee'></i></p>
+
+                                {% if user.is_authenticated %}
+                                <a href="{% url 'bookguide' guide_name='Darshan Raval' guide_place='Rani Ki Vav' %}" class="book-guide"> Book Guide </a>
+                                {% else %}
+                                <p class="booking-info">Login to book a guide <a
+                                        href="{% url 'login' %}"
+                                        class="login-link">Login Now</a></p>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <button class="next-guide">&#10095;</button>
+                    </div>
+                </section>
+                <!-- End of Guide Selection -->
+
+                
+            <!-- Add this after the overview section and before the location-gallery-container -->
+            <h4 class="r">Enter Rating for places </h4>
+            <section class="ratings-reviews">
+                <form method="POST">
+                    {% csrf_token %}
+                    <label for="rating-select">Select a rating Place:</label>
+                    <select id="rating-select" name="place_name">
+                        <option value="adalaj-stepwell" data-rating="excellent">Adalaj Stepwell</option>
+                        <option value="rani-ki-vav" data-rating="good">Rani Ki Vav</option>
+                        <option value="vintage-car-museum" data-rating="average">The Vintage Car Museum</option>
+                        <option value="sabarmati-aashram" data-rating="poor">Sabarmati Aashram</option>
+                        <option value="hutheesing-jain-temple" data-rating="excellent">Hutheesing Jain Temple</option>
+                        <option value="jama-masjid" data-rating="good">Jama Masjid</option>
+                        <option value="jhulta-minar" data-rating="average">Jhulta Minar</option>
+                        <option value="kankaria-lake" data-rating="poor">Kankaria Lake</option>
+                        <option value="lal-darvaja" data-rating="excellent">Lal Darvaja</option>
+                        <option value="sabarmati-riverfront" data-rating="good">Sabarmati Riverfront</option>
+                    </select>
+                    
+            
+                    <label for="rate">Enter a reating(1-10):</label>
+                    <input type="number" id="rateing" name="rateing" min="1" max="10" placeholder="Enter a number" required>
+            
+                    <button type="submit">Submit</button>
+                </form>
+            </section>
+            <!--End Add this after the overview section and before the location-gallery-container -->
+
+            </main>
+        </div>
+
+        <!-- Trending Tour Section -->
+        <div class="trending-tour">
+            <img src="{% static 'images/places/Heritage-Walk-Thumbnail1.jpg' %}"
+                alt="Trending Tour" class="trending-image">
+            <div class="trending-content">
+                <h2>Discover the beauty and</h2>
+                <h2> culture of your destination</h2> <br>
+                <a href="{% url 'tour' %}" class="btn btn-primary">Trending
+                    Tour</a>
+            </div>
+        </div>
+        <!-- End Trending Tour Section -->
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        // Get all elements
+        const mainImage = document.querySelector('.image-gallery img');
+        const thumbnails = document.querySelectorAll('.thumbnail-gallery img');
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+        
+        // Initialize current image index
+        let currentIndex = 0;
+        const totalImages = thumbnails.length;
+        
+        // Load all image sources into an array for easy access
+        const imageSources = Array.from(thumbnails).map(thumb => thumb.src);
+        
+        // Function to update the main image
+        function updateMainImage(index) {
+            // Make sure index is within bounds
+            if (index < 0) index = totalImages - 1;
+            if (index >= totalImages) index = 0;
+            
+            // Update current index
+            currentIndex = index;
+            
+            // Set the main image source to the selected thumbnail source
+            mainImage.src = imageSources[currentIndex];
+            
+            // Highlight the current thumbnail
+            thumbnails.forEach((thumb, i) => {
+                if (i === currentIndex) {
+                    thumb.style.borderColor = '#a57e3b';
+                    thumb.style.transform = 'scale(1.15)';
+                } else {
+                    thumb.style.borderColor = '#ccc';
+                    thumb.style.transform = 'scale(1)';
+                }
+            });
+        }
+        
+        // Set up click event for previous button
+        prevButton.addEventListener('click', function() {
+            updateMainImage(currentIndex - 1);
+        });
+        
+        // Set up click event for next button
+        nextButton.addEventListener('click', function() {
+            updateMainImage(currentIndex + 1);
+        });
+        
+        // Set up click events for thumbnails
+        thumbnails.forEach((thumbnail, index) => {
+            thumbnail.addEventListener('click', function() {
+                updateMainImage(index);
+            });
+        });
+        
+        // Initialize the gallery with the first image
+        updateMainImage(0);
+    });
+    </script>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const prevButton = document.querySelector('.prev-guide');
+            const nextButton = document.querySelector('.next-guide');
+            const guides = document.querySelectorAll('.guide-profile');
+            let currentGuideIndex = 0;
+            
+            // Hide all guides except the first one
+            guides.forEach((guide, index) => {
+                if (index !== 0) {
+                    guide.classList.remove('active');
+                }
+            });
+            
+            prevButton.addEventListener('click', function() {
+                guides[currentGuideIndex].classList.remove('active');
+                currentGuideIndex = (currentGuideIndex - 1 + guides.length) % guides.length;
+                guides[currentGuideIndex].classList.add('active');
+            });
+            
+            nextButton.addEventListener('click', function() {
+                guides[currentGuideIndex].classList.remove('active');
+                currentGuideIndex = (currentGuideIndex + 1) % guides.length;
+                guides[currentGuideIndex].classList.add('active');
+            });
+        });
+        </script>
+
+    </body>
+</html>
+
+{% endblock %}

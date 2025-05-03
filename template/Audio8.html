@@ -1,0 +1,215 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Player Layout</title>
+    <link rel="stylesheet" href="{% static 'css/Audio8.css' %}" />
+</head>
+<body>
+    <div class="audio-player-container">
+        <!-- Header with logo -->
+        <div class="header">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 18.5C12 18.5 18 15 18 11V5.5L12 3L6 5.5V11C6 15 12 18.5 12 18.5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Traveler's Bible
+            </div>
+        </div>
+        
+        <!-- Main content area -->
+        <div class="content">
+            <!-- Main image -->
+            <div class="main-image">
+                <img src="{% static 'images/TourDetail/Kankaria2.jpg' %}" alt="Kankaria Lake" id="mainImage">
+            </div>
+            
+            <!-- Player information and controls -->
+            <div class="player-info">
+                <div class="info-section">
+                    <h1 class="title">Kankaria Lake</h1>
+                    <p class="subtitle">English</p>
+                </div>
+                
+                <div class="audio-controls">
+                    <!-- Timeline with progress -->
+                    <div class="timeline">
+                        <span class="time current-time">0:00</span>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress" id="progressBar"></div>
+                                <div class="progress-thumb" id="progressThumb"></div>
+                            </div>
+                        </div>
+                        <span class="time total-time">10:31</span>
+                        
+                        <!-- Volume control -->
+                        <div class="volume-control">
+                            <button class="control-button volume-button">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M15.54 8.46C16.4774 9.39764 17.004 10.6692 17.004 12C17.004 13.3308 16.4774 14.6024 15.54 15.54" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M19.07 4.93C20.9447 6.80527 21.9979 9.34835 21.9979 12C21.9979 14.6516 20.9447 17.1947 19.07 19.07" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div class="volume-bar">
+                                <div class="volume-level"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Playback control buttons -->
+                    <div class="playback-controls">
+                        <button class="control-button shuffle">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16 3H21V8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M4 20L21 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M21 16V21H16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15 15L21 21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M4 4L9 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <button class="control-button previous">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19 20L9 12L19 4V20Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M5 19V5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <button class="control-button play-pause" id="playPauseBtn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 4V20L20 12L10 4Z" fill="white"/>
+                            </svg>
+                        </button>
+                        <button class="control-button next">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 4L15 12L5 20V4Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M19 5V19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <button class="control-button speed">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 16V8C6 5.79086 7.79086 4 10 4H14C16.2091 4 18 5.79086 18 8V16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M5 20H19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Thumbnail -->
+        <div class="thumbnail">
+            <img src="{% static 'images/TourDetail/kankaria2.jpg' %}" alt="Rani Ki Vav" id="thumbnailImage">
+        </div>
+    </div>
+
+    <!-- Hidden audio element -->
+    <audio id="audioElement" src="{% static 'files/kakaroya_eng_1.mp3' %}"></audio>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const audioElement = document.getElementById('audioElement');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const progressBar = document.getElementById('progressBar');
+            const progressThumb = document.getElementById('progressThumb');
+            const currentTimeEl = document.querySelector('.current-time');
+            const totalTimeEl = document.querySelector('.total-time');
+            
+            // State
+            let isPlaying = false;
+            
+            // Play/Pause functionality
+            playPauseBtn.addEventListener('click', function() {
+                if (isPlaying) {
+                    audioElement.pause();
+                    updatePlayPauseIcon(false);
+                } else {
+                    audioElement.play()
+                        .then(() => {
+                            updatePlayPauseIcon(true);
+                        })
+                        .catch(error => {
+                            console.error("Error playing audio:", error);
+                            // Show user-friendly error message
+                            alert("Unable to play audio. Please check if the audio file exists.");
+                        });
+                }
+                
+                isPlaying = !isPlaying;
+            });
+            
+            // Update play/pause button icon
+            function updatePlayPauseIcon(playing) {
+                if (playing) {
+                    playPauseBtn.innerHTML = `
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="6" y="4" width="4" height="16" fill="white"/>
+                            <rect x="14" y="4" width="4" height="16" fill="white"/>
+                        </svg>
+                    `;
+                } else {
+                    playPauseBtn.innerHTML = `
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 4V20L20 12L10 4Z" fill="white"/>
+                        </svg>
+                    `;
+                }
+            }
+            
+            // Format time in MM:SS
+            function formatTime(seconds) {
+                const minutes = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${minutes}:${secs < 10 ? '0' + secs : secs}`;
+            }
+            
+            // Update progress bar
+            audioElement.addEventListener('timeupdate', function() {
+                const currentTime = audioElement.currentTime;
+                const duration = audioElement.duration;
+                
+                if (!isNaN(duration)) {
+                    const progressPercent = (currentTime / duration) * 100;
+                    progressBar.style.width = `${progressPercent}%`;
+                    progressThumb.style.left = `${progressPercent}%`;
+                    
+                    currentTimeEl.textContent = formatTime(currentTime);
+                    totalTimeEl.textContent = formatTime(duration);
+                }
+            });
+            
+            // Allow seeking by clicking on progress bar
+            const progressContainer = document.querySelector('.progress-container');
+            progressContainer.addEventListener('click', function(e) {
+                const rect = this.getBoundingClientRect();
+                const clickPosition = (e.clientX - rect.left) / rect.width;
+                
+                if (!isNaN(audioElement.duration)) {
+                    audioElement.currentTime = clickPosition * audioElement.duration;
+                }
+            });
+            
+            // Load and set audio metadata when available
+            audioElement.addEventListener('loadedmetadata', function() {
+                totalTimeEl.textContent = formatTime(audioElement.duration);
+            });
+            
+            // Handle audio errors
+            audioElement.addEventListener('error', function() {
+                console.error("Audio error:", audioElement.error);
+                alert("Error loading audio file. Please check if the file exists and is in a supported format.");
+            });
+            
+            // If no audio file is set, show appropriate UI
+            if (!audioElement.src || audioElement.src === window.location.href) {
+                console.warn("No audio source specified");
+                // You could update UI here to show "No audio available" message
+            }
+        });
+    </script>
+</body>
+</html>

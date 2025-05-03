@@ -1,0 +1,467 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Audio Guide UI</title>
+        <link rel="stylesheet" href="{% static 'css/tour-detail3.css' %}">
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel='stylesheet'>
+        <link rel="stylesheet" href="{% static 'css/boxicons.min.css' %}">
+    </head>
+    <body>
+
+        <!-- Header Section -->
+        <header class="hero">
+            <img src="{% static 'images/background/akshar.jpg' %}"
+                alt="Tour Place">
+            <div class="overlay">
+                <h1>Tour Detail</h1>
+            </div>
+        </header>
+        <!--Ended Header Section -->
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li>></li>
+                <li class="current">Tour Detail</li>
+            </ul>
+        </nav>
+        <!-- End Breadcrumb -->
+
+        <!--Start of Image and Places -->
+        <div class="container">
+            <aside class="sidebar">
+                <button class="search-btn">Search Places</button>
+                <div class="categories">
+                    <h3>Cities</h3>
+                    <ul>
+                        <li> <a href="{% url 'ahmedabad' %}"> Ahmedabad </a>
+                        </li>
+                        <li> <a href="#"> Surat </a> </li>
+                        <li> <a href="#"> Amreli </a> </li>
+                        <li> <a href="#"> Veraval </a> </li>
+                        <li> <a href="#"> Bhavnagar </a> </li>
+                        <li> <a href="#"> Patan </a> </li>
+                    </ul>
+                    <h3>Nearby Places</h3>
+                    <ul>
+                        <li> <a href="#"> Rani Ki Vav </a> </li>
+                        <li> <a href="#"> The Vintage Car Museum </a> </li>
+                        <li> <a href="#"> Sabarmati Ashram </a> </li>
+                        <li> <a href="#"> Hutheesing Jain Temple </a> </li>
+                        <li> <a href="#"> Jama Masjid </a> </li>
+                        <li> <a href="#"> Jhulta Minar </a> </li>
+                        <li> <a href="#"> Kankaria Lake </a> </li>
+                        <li> <a href="#"> Lal Darwaza </a> </li>
+                        <li> <a href="#"> Sabarmati Riverfront </a> </li>
+                    </ul>
+                </div>
+            </aside>
+
+            <main class="content">
+                <header class="place-header">
+                    <div class="place-info">
+                        <div>
+                            Average Rating: {{ avg_rating }} / 10 <span>
+                                {% for _ in ""|ljust:avg_rating %}
+                                    ⭐
+                                {% endfor %}
+                            </span><br>
+                           Total Ratings: {{ total_ratings }}                    
+                        </div>
+                        <h1>The Vintage Car Museum</h1>
+                        <p><span>📍</span> Ahmedabad, Gujarat</p> <br>
+                        <p><span>📞</span> 9016488753</p>
+                    </div>
+                    <div class="audio-section">
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'Audio3' %}" class="audio-btn">Listen
+                            Audio</a>
+                        {% else %}
+                        <a href="#" class="audio-btn">Login To Listen Audio</a>
+                        {% endif %}
+                        <br>
+                        <span class="category">Historical</span>
+                    </div>
+                </header>
+
+                <section class="image-gallery">
+                    <button class="prev">&#10094;</button>
+                    <img src="{% static 'images/vintage1.jpg' %}"
+                        alt="The Vintage Car Museum">
+                    <button class="next">&#10095;</button>
+                </section>
+                <div class="thumbnail-gallery">
+                    <img src="{% static 'images/TourDetail/vintage1.jpg' %}"
+                        alt="Thumbnail 1">
+                    <img src="{% static 'images/TourDetail/vintage2.jpg' %}"
+                        alt="Thumbnail 2">
+                    <img src="{% static 'images/TourDetail/vintage3.jpg' %}"
+                        alt="Thumbnail 3">
+                    <img src="{% static 'images/TourDetail/vintage4.jpg' %}"
+                        alt="Thumbnail 4">
+                </div>
+                <!--End of Image and Places -->
+
+                <!-- Start of Overview Section -->
+                <selection class="overview">
+                    <h2>Overview</h2>
+                    <h3>About the Place:</h3> <br>
+                    <h4>The Vintage Car Museum</h4>
+                    <p>Tourists would be amazed with the priceless collection of
+                        the valuable cars ranging from the 1906 Minerva to 1954
+                        Ford. Car enthusiasts would be delighted viewing the
+                        diverse range of the four wheeled vehicles. More than a
+                        hundred cars are displayed built by well known coach
+                        builders including Hopper, Barker, Gurney-Nutting,
+                        Fleetwood and Lebaron.</p>
+
+                    <p>Well maintained by Vintage and Classic Car Club of India,
+                        the museum is now managed by Director Mr Nitin Dossa.
+                        People who appreciate speed and style would be astounded
+                        to see the antiques. One of the arresting displays is
+                        the 1923 Rolls 20 HP with a typical shooting brake body
+                        by Barker among the best collection of Rolls Royce.</p>
+
+                    <p> People can also watch for the Lancia Cars that are
+                        notable for their load bearing unitary body and includes
+                        Lancia Lambda and Lancia Lambda 1926 and 1931 Lancia
+                        Dilambda. Another interesting exhibit is the 1927
+                        Phantom I with a boat tail roadster body. Bhogilal had
+                        given different names to the diverse cars he had in his
+                        collection. He named his 1926 Rolls-Royce Phantom I as
+                        Azad that had a Barker body painted in tricolor.</p>
+
+                    <p> Museum features royal cars belonging to famous rulers of
+                        the country. Included in the displays are the vintage
+                        cars of the renowned brands namely, Maybach, Packards,
+                        Cadillacs, Mercedes, and Lincolns. This informative
+                        museum showcases cars of the time period when holding a
+                        car portrayed as a status symbol.</p>
+
+                    <p> Tourists would love to gaze at the exhibits set in the
+                        different sections built within the verdant gardens.
+                        Museum holds Horse drawn carriages, Boat tailed Wooden
+                        Speedsters and Shooting Brake-Cars especially made for
+                        the affluent. Other vehicles christened by him were
+                        Chamunda, Chetak, Pushpak, Caesar and Cleopatra. The
+                        image of Rana Sahib of Porbandar can be found just
+                        behind his car - the 1940 Lagonda.</p>
+
+                    <p> This impressive museum contains the best collections of
+                        Rolls Royce that includes 1936 Phantom III, 1937 Phantom
+                        III, 1949 Rolls-Royce, 1923 Silver Ghost and 1927
+                        Phantom I with a limousine body by Windovers. People can
+                        see the Bedford mobile chest clinic with its different
+                        interiors. It also accommodates different types of
+                        carts.</p>
+
+                    <p>The 1923 Rolls-Royce Silver Ghost with its Victoria State
+                        Landau body that has gas lamps on its side is one of the
+                        noteworthy highlights of the museum. This treasure trove
+                        includes a 1927 Hispano Suiza H6C with coachwork by HJ
+                        Muller and cabinets mounted on the running boards for
+                        holding shotguns and rifles. A museum filled with
+                        treasures appreciated by every visitor where another
+                        highlight is the 1937 Maybach SW38.</p>
+
+                    <p>Another attention grabbing car is the odd colour
+                        combination Chrysler Imperial Airflow that had been one
+                        of the most prominent cars of the 1930’s. Other cars
+                        includes 1906 Mors, 1911 Daimler, 1914 Minerva, 1906
+                        Minerva and 1910 Ford Model T, 1931 Auburn V12, 1926
+                        Lagonda 2 litre, 1936 Lagonda V12, 1934 Bentley 3.5
+                        Litre, 1935 Auburn 851 and 1952 Bentley Mark VI.</p>
+
+                    <p>Visitors can also see few of the cars made by one of the
+                        renowned American automobile manufacturers, Buick that
+                        includes 1931 Buick Tourer, 1947 Buick Eight Super and
+                        1935 Buick Eight. Museum also exhibits sports cars like
+                        1931 MG Magna, 1937 AC, 1937 Riley Sprite Sports and
+                        1946 Sunbeam Talbot.</p>
+
+                    <p>Museum also houses Hotchkiss Cars made by the French
+                        company Hotchkiss. It also has a cafeteria and a station
+                        for fun drives in vintage cars.</p>
+
+                    <h4>Entry Time and Fees of Auto World Vintage Car Museum</h4>
+
+                    <p>The Vintage Car Museum is open for visitors from 8 am in
+                        the morning. The closing time of the museum is 9 pm in
+                        the evening. The museum is open all days of the week.
+                        Visiting charges for the museum is Rs. 50 per person. An
+                        interesting feature of the museum is that the visitors
+                        can travel a fixed distance of 3.5 km by paying fees of
+                        Rs. 500. Visitors will have to pay extra if they want to
+                        take their cameras inside the museum.</p>
+
+                    <h3>In The Vintage Car Museum Who Best thing Watch to See</h3>
+                    <p>1.Ferrari 250 GTO. 1962 Ferrari 250 GTO</p>
+                    <p>2.1963 Shelby Cobra.</p>
+                    <p>3.Mercedes-Benz 300SL Gullwing.</p>
+                    <p>4.Jaguar E-Type.</p>
+
+                    <h3>Additional Info:</h3>
+                    <p>The information of The Vintage Car Museum is where is this place? how many days open and when it is open and colse.</p>
+                    <table>
+                        <tr>
+                            <th>Address</th>
+                            <th>Timing</th>
+                            <th>Days</th>
+                            <th>Entry Price</th>
+                        </tr>
+                        <tr>
+                            <td>Dastan Estate, Service Rd, Nikol, Kathwada, Gujarat 382430</td>
+                            <td>8:00 AM - 9:00 PM</td>
+                            <td>Sunday - Saturday</td>
+                            <td>50 <i class='bx bx-rupee'></i> </td>
+                        </tr>
+                    </table>
+
+                    <h3>Contact Number</h3>
+                    <p class="num">+91 9016488753</p>
+                </section>
+                <!-- End of Overview Section -->
+
+                <!-- Start of Location and Gallery Section -->
+                <section class="location-gallery-container">
+                    <!-- Location Section -->
+                    <div class="location">
+                        <h2>Location</h2>
+                        <p>The world is a book, and those who do not travel read only a page.</p>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7146381.992491944!2d72.687262!3d23.057285!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e873f46439111%3A0xc38658a3a8db9375!2sAuto%20World%20Vintage%20Car%20Museum!5e1!3m2!1sen!2sus!4v1741685963502!5m2!1sen!2sus"
+                            width="100%" height="450" style="border:0;"
+                            allowfullscreen loading="lazy"></iframe>
+                    </div>
+
+                    <!-- Gallery Section -->
+                    <div class="gallery">
+                        <h2>Gallery</h2>
+                        <p>A photograph is a secret about a secret. The more it tells you, the less you know.</p> <br>
+                        <div class="gallery-images">
+                            <img
+                                src="{% static 'images/TourDetail/vintage1.jpg' %}"
+                                alt="Gallery Image 1">
+                        </div>
+                    </div>
+                </section>
+                <!-- End of Location and Gallery Section -->
+
+                <!-- Add this after the thumbnail-gallery section and before the overview section -->
+                <section class="guide-selection">
+                    <h2>Choose Your Guide For this Monument</h2>
+
+                    <div class="guide-carousel">
+                        <button class="prev-guide">&#10094;</button>
+
+                        <div class="guides-container">
+                            <div class="guide-profile active">
+                                <div class="guide-image">
+                                    <img
+                                        src="{% static 'images/guides/g3.jpg' %}"
+                                        alt="Guide - Patel Dhyan">
+                                </div>
+                                <h3>Patel Dhyan</h3>
+                                <p class="guide-price">Price : 300<i class='bx bx-rupee'></i></p>
+
+                                {% if user.is_authenticated %}
+                                <a
+                                    href="{% url 'bookguide' guide_name='Patel Dhyan' guide_place='Vintage Car Museum' %}"
+                                    class="book-guide"> Book Guide </a>
+                                {% else %}
+                                <br> <p class="booking-info">Login to book a
+                                    guide <a href="{% url 'login' %}"
+                                        class="login-link">Login Now</a></p>
+                                {% endif %}
+                            </div>
+
+                            <div class="guide-profile">
+                                <div class="guide-image">
+                                    <img
+                                        src="{% static 'images/guides/g4.jpg' %}"
+                                        alt="Guide - Shreya Patel">
+                                </div>
+                                <h3>Shreya Patel</h3>
+                                <p class="guide-price">Price : 400<i class='bx bx-rupee'></i></p>
+
+                                {% if user.is_authenticated %}
+                                <a
+                                    href="{% url 'bookguide' guide_name='Shreya Patel' guide_place='Vintage Car Museum' %}"
+                                    class="book-guide"> Book Guide </a>
+                                {% else %}
+                                <p class="booking-info">Login to book a guide <a
+                                        href="{% url 'login' %}"
+                                        class="login-link">Login Now</a></p>
+                                {% endif %}
+                            </div>
+
+                            <div class="guide-profile">
+                                <div class="guide-image">
+                                    <img
+                                        src="{% static 'images/guides/g1.jpg' %}"
+                                        alt="Guide - Darshan Raval">
+                                </div>
+                                <h3>Darshan Raval</h3>
+                                <p class="guide-price">Price : 300<i class='bx bx-rupee'></i></p>
+
+                                {% if user.is_authenticated %}
+                                <a
+                                    href="{% url 'bookguide' guide_name='Darshan Raval' guide_place='Vintage Car Museum' %}"
+                                    class="book-guide"> Book Guide </a>
+                                {% else %}
+                                <p class="booking-info">Login to book a guide <a
+                                        href="{% url 'login' %}"
+                                        class="login-link">Login Now</a></p>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <button class="next-guide">&#10095;</button>
+                    </div>
+                </section>
+                <!-- End of Guide Selection -->
+
+                <!-- Add this after the overview section and before the location-gallery-container -->
+            <h4 class="r">Enter Rating for places </h4>
+            <section class="ratings-reviews">
+                <form method="POST">
+                    {% csrf_token %}
+                    <label for="rating-select">Select a rating Place:</label>
+                    <select id="rating-select" name="place_name">
+                        <option value="adalaj-stepwell" data-rating="excellent">Adalaj Stepwell</option>
+                        <option value="rani-ki-vav" data-rating="good">Rani Ki Vav</option>
+                        <option value="vintage-car-museum" data-rating="average">The Vintage Car Museum</option>
+                        <option value="sabarmati-aashram" data-rating="poor">Sabarmati Aashram</option>
+                        <option value="hutheesing-jain-temple" data-rating="excellent">Hutheesing Jain Temple</option>
+                        <option value="jama-masjid" data-rating="good">Jama Masjid</option>
+                        <option value="jhulta-minar" data-rating="average">Jhulta Minar</option>
+                        <option value="kankaria-lake" data-rating="poor">Kankaria Lake</option>
+                        <option value="lal-darvaja" data-rating="excellent">Lal Darvaja</option>
+                        <option value="sabarmati-riverfront" data-rating="good">Sabarmati Riverfront</option>
+                    </select>
+                    
+            
+                    <label for="rate">Enter a reating(1-10):</label>
+                    <input type="number" id="rateing" name="rateing" min="1" max="10" placeholder="Enter a number" required>
+            
+                    <button type="submit">Submit</button>
+                </form>
+            </section>
+            <!--End Add this after the overview section and before the location-gallery-container -->
+
+            </main>
+        </div>
+
+        <!-- Trending Tour Section -->
+        <div class="trending-tour">
+            <img src="{% static 'images/places/Heritage-Walk-Thumbnail1.jpg' %}"
+                alt="Trending Tour" class="trending-image">
+            <div class="trending-content">
+                <h2>Discover the beauty and</h2>
+                <h2> culture of your destination</h2> <br>
+                <a href="{% url 'tour' %}" class="btn btn-primary">Trending
+                    Tour</a>
+            </div>
+        </div>
+        <!-- End Trending Tour Section -->
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        // Get all elements
+        const mainImage = document.querySelector('.image-gallery img');
+        const thumbnails = document.querySelectorAll('.thumbnail-gallery img');
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+        
+        // Initialize current image index
+        let currentIndex = 0;
+        const totalImages = thumbnails.length;
+        
+        // Load all image sources into an array for easy access
+        const imageSources = Array.from(thumbnails).map(thumb => thumb.src);
+        
+        // Function to update the main image
+        function updateMainImage(index) {
+            // Make sure index is within bounds
+            if (index < 0) index = totalImages - 1;
+            if (index >= totalImages) index = 0;
+            
+            // Update current index
+            currentIndex = index;
+            
+            // Set the main image source to the selected thumbnail source
+            mainImage.src = imageSources[currentIndex];
+            
+            // Highlight the current thumbnail
+            thumbnails.forEach((thumb, i) => {
+                if (i === currentIndex) {
+                    thumb.style.borderColor = '#a57e3b';
+                    thumb.style.transform = 'scale(1.15)';
+                } else {
+                    thumb.style.borderColor = '#ccc';
+                    thumb.style.transform = 'scale(1)';
+                }
+            });
+        }
+        
+        // Set up click event for previous button
+        prevButton.addEventListener('click', function() {
+            updateMainImage(currentIndex - 1);
+        });
+        
+        // Set up click event for next button
+        nextButton.addEventListener('click', function() {
+            updateMainImage(currentIndex + 1);
+        });
+        
+        // Set up click events for thumbnails
+        thumbnails.forEach((thumbnail, index) => {
+            thumbnail.addEventListener('click', function() {
+                updateMainImage(index);
+            });
+        });
+        
+        // Initialize the gallery with the first image
+        updateMainImage(0);
+    });
+    </script>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const prevButton = document.querySelector('.prev-guide');
+            const nextButton = document.querySelector('.next-guide');
+            const guides = document.querySelectorAll('.guide-profile');
+            let currentGuideIndex = 0;
+            
+            // Hide all guides except the first one
+            guides.forEach((guide, index) => {
+                if (index !== 0) {
+                    guide.classList.remove('active');
+                }
+            });
+            
+            prevButton.addEventListener('click', function() {
+                guides[currentGuideIndex].classList.remove('active');
+                currentGuideIndex = (currentGuideIndex - 1 + guides.length) % guides.length;
+                guides[currentGuideIndex].classList.add('active');
+            });
+            
+            nextButton.addEventListener('click', function() {
+                guides[currentGuideIndex].classList.remove('active');
+                currentGuideIndex = (currentGuideIndex + 1) % guides.length;
+                guides[currentGuideIndex].classList.add('active');
+            });
+        });
+        </script>
+
+    </body>
+</html>
+
+{% endblock %}

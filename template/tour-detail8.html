@@ -1,0 +1,457 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Guide UI</title>
+    <link rel="stylesheet" href="{% static 'css/tour-detail8.css' %}">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'css/boxicons.min.css' %}">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="hero">
+        <img src="{% static 'images/background/akshar.jpg' %}" alt="Tour Place">
+        <div class="overlay">
+            <h1>Tour Detail</h1>
+        </div>
+    </header>
+    <!--Ended Header Section -->
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+      <ul>
+          <li><a href="{% url 'index' %}">Home</a></li>
+          <li>></li>
+          <li class="current">Tour Detail</li>
+      </ul>
+    </nav>
+    <!-- End Breadcrumb -->
+
+    <!--Start of Image and Places -->
+    <div class="container">
+        <aside class="sidebar">
+            <button class="search-btn">Search Places</button>
+            <div class="categories">
+                <h3>Cities</h3>
+                <ul>
+                    <li> <a href="{% url 'ahmedabad' %}"> Ahmedabad </a> </li>
+                    <li> <a href="#"> Surat </a> </li>
+                    <li> <a href="#"> Amreli </a> </li>
+                    <li> <a href="#"> Veraval </a> </li>
+                    <li> <a href="#"> Bhavnagar </a> </li>
+                    <li> <a href="#"> Patan </a> </li>
+                </ul>
+                <h3>Nearby Places</h3>
+                <ul>
+                    <li> <a href="#"> Rani Ki Vav </a> </li>
+                    <li> <a href="#"> The Vintage Car Museum </a> </li>
+                    <li> <a href="#"> Sabarmati Ashram </a> </li>
+                    <li> <a href="#"> Hutheesing Jain Temple </a> </li>
+                    <li> <a href="#"> Jama Masjid </a> </li>
+                    <li> <a href="#"> Jhulta Minar </a> </li>
+                    <li> <a href="#"> Kankaria Lake </a> </li>
+                    <li> <a href="#"> Lal Darwaza </a> </li>
+                    <li> <a href="#"> Sabarmati Riverfront </a> </li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="place-header">
+                <div class="place-info">
+                    <div>
+                        Average Rating: {{ avg_rating }} / 10 <span>
+                            {% for _ in ""|ljust:avg_rating %}
+                                ⭐
+                            {% endfor %}
+                        </span><br>
+                       Total Ratings: {{ total_ratings }}                    
+                    </div>
+                    <h1>Kankaria Lake</h1>
+                    <p><span>📍</span> Ahmedabad, Gujarat</p> <br>
+                    <p><span>📞</span> 6354592403</p>
+                </div>
+                <div class="audio-section">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'Audio8' %}" class="audio-btn">Listen Audio</a>
+                    {% else %}
+                        <a href="#" class="audio-btn">Login To Listen Audio</a>
+                    {% endif %}
+                    <br> 
+                    <span class="category">Historical</span>
+                </div>
+            </header>
+            
+            <section class="image-gallery">
+                <button class="prev">&#10094;</button>
+                <img src="{% static 'images//TourDetail/lake.jpg' %}" alt="Adalaj Stepwell">
+                <button class="next">&#10095;</button>
+            </section>
+            <div class="thumbnail-gallery">
+                <img src="{% static 'images/TourDetail/lake.jpg' %}" alt="Thumbnail 1">
+                <img src="{% static 'images/TourDetail/lake2.jpg' %}" alt="Thumbnail 2">
+                <img src="{% static 'images/TourDetail/lake3.jpg' %}" alt="Thumbnail 3">
+                <img src="{% static 'images/TourDetail/lake4.jpg' %}" alt="Thumbnail 4">
+            </div>
+            <!--End of Image and Places -->
+
+
+            <!-- Start of Overview Section -->
+            <section class="overview">
+                <h2>Overview</h2>
+                <h3>About the Place:</h3> <br>
+                <h4>Kankria Lake</h4>
+                <p>Kankaria Lake is the second largest lake in Ahmedabad, Gujarat, India. It is located in the south-
+                    eastern part of the city, in the Maninagar area. It was completed in 1451 during the reign of Sultan
+                    Qutb-ud-Din Ahmad Shah II though its origin is placed in the Chaulukya period sometimes. A
+                    lakefront is developed around it,</p>
+
+                <p>which has many public attractions such as a zoo, toy train, kids</p>
+                <p>city, tethered balloon ride, water rides, water park, food stalls, and entertainment facilities. The
+                    lakefront was revamped in 2007–2008. Kankaria Carnival is a week-long festival held here in the
+                    last week of December. Many cultural, art, and social activities are organised during the carnival.</p>
+                
+                <h4>Etymology</h4>
+                <p>Several stories are told for its name Kankaria. One reason said is that it was named this due to
+                    large quantities of limestone (kankar in Gujarati) dug out of it during excavation. Another story
+                    narrates that the Sultan Qutb-ud-Din asked the saint Shah Alam to select the site for the tank and
+                    the garden.</p>
+                <p>The saint scattered some pebbles at the site which was excavated and the lake was
+                    built. Thus it was named Kankaria. Another story says the saint Hazrat-i-Shah Alam cut his foot on
+                    a pebble while passing through excavation and exclaimed, "What a pebble!" So it was named
+                    Kankaria (pebbly). It was mentioned as Hauj-e-Qutb (the tank of Qutb) after the Sultan Qutb-ud-Din
+                    in the inscription at Kankaria.</p>
+
+                <h4>History</h4>
+                <p>There are various versions of its origin. According to the 14th-century chronicler Merutunga,
+                    Chaulukya ruler Karna built a temple dedicated to the goddess Kochharba at Ashapalli after
+                    defeating the Bhil chief Asha. He also established the Karnavati city nearby,</p>
+
+                <p>where he commissioned the Karneshvara/Karnamukteshwara and Jayantidevi temples. He also built the
+                    Karnasagara tank at Karnavati next to Karneshvara temple. Karnavati is identified with modern
+                    Ahmedabad and Karnasagar tank is identified with Kankaria lake but this identification is not
+                    certain</p>
+
+                <p>The construction of the lake started by Sultan Muizz-ud-Din Muhammad Shah II in the 15th
+                    century. The inscription at the lake mentions that it was completed during the reign of Sultan Qutb-
+                    ud-Din Ahmad Shah II in 1451. According to this inscription, its name is placed as "Hauj-e-Qutb"
+                    (Pond of Qutb) after him.</p>
+
+                <p>Throughout the period of the Gujarat Sultanate and of Mughal rule, the Kankaria lake with its Nagina
+                    Bagh were the favourite leisure place of rulers and the people and it were among the tourist
+                    sights of Ahmedabad ever since.</p>
+
+                <p>The European travellers of the 17th century, Pietro Della Valle(1623), Johan Albrecht de Mandelslo (1638), Jean de Thévenot (1666), all had visited the lake gave its accounts. Mandelslo who visited Gujarat during the reign of Shah Jahan wrote in 1638,I went thence along a Sone Bridge, which is four hundred paces in length, to another Garden called Niccinabag (Nagina Baug), that is to say, the Jewel, and they say it was planted by a beautiful and rich young lady.
+                </p>
+
+                <p>The garden is not very great, no more than the house within it; but both are very advantageously seated in a place high enough to discover all the adjacent champion, and, upon the avenues of the Bridge, to make the noblest prospect that ever I saw. The rain which falls in the winter-time supplies a great fish-pond or pool in the middle of the garden. But in summer they make use of certain engines wherewith many oxen put together draw up thewater out of wells which are so deep that they are never dry. A man</p>
+                <p>can seldom go to this garden, but he shall find some young women bathing themselves; they will not permit the Indians should see them, but suffered us to come in and speak to them.— Mandelslo's Travels into the Indies,
+                <p>British artist James Forbes visited Ahmadabad in 1781 after the fall of Mughal Empire when
+                    Ahmedabad was under Maratha rule. He found the gardens at lake neglected, the summer-palace
+                    in ruins and the bridge with 48 stone arches connecting Nagina Baug island to the bank in
+                    dilapidated condition.</p>
+
+                <p>He specially noted a species of palmyra in the Nagina Baug which is very
+                    uncommon. The tree grows in a straight stem very high and then spreading several branches with
+                    a tuft of spreading leaves at the end of each branch. It is still there. After a century, when
+                    Ahmedabad was under the British rule, the Kankaria lake was restored by the Collector of the
+                    district, Borradalle in 1872.</p>
+
+                <p>A road was built from the Raipur gate to the lake. The high banks of the
+                    lake were organised and the trees were planted on them. Of the original arched bridge, a small
+                    portion was restored and the rest of length is made with earthen bank. In the island, the steps
+                    were restored on all four sides, the ancient well was cleared out, the fountain and the pleasure
+                    house were restored.</p>
+
+                <p>the new pierced parapet wall built. In 1879, it was proposed to connect the
+                    lake with Khari river by 11 miles long canal and supply water to Chandola lake but it never
+                    materialised. In 1928, Kankaria was declared protected under the Ancient Monuments Preservation Act. The central garden and the walkway had been revamped and utilities are enhanced by Ahmedabad
+                    Municipal Corporation in 2007―2008.</p>
+
+                <p>Upon completion of the renovation at the cost of ₹30 crore (equivalent to ₹77 crore or US$9.6 million in 2020), the lake was officially inaugurated on 25 December 2008 in a week long event known as Kankaria Carnival. Architecture The reservoir is a 34 sided regular polygon covering an area of 76 acres and having a shore length of approximately one and a quarter mile, or 2 km.</p>
+
+                <p>It is surrounded by flights of cut stone steps</p>
+                <p>and in six places, slopes, giving access to the water. These slopes were covered by square
+                    cupolas, each raised on 12 pillars. An island in the centre of the lake contains a garden and is called Nagina Wadi, formerly Bagh-e-Nagina (beautiful garden in Urdu); it is connected to the bank by a bridge, originally of 48 arches.The garden is mentioned in Mirat-e-Ahmadi as "the Jewel (Nagina) in the centre of the ring of lake". The garden contains a pleasure house or summer palace called Ghattamandal. During restoration, the British constructed a parapet wall around the garden.</p>
+
+                </p>
+                <blockquote>
+                    “Samvat 1555 (1498 AD), month of Magha, Mahmud Padshah being king.<br>
+                    “Salutation to Vinayaka (Ganesha) to whose race belonged King Mokala, chief of the country of Dandahl. From him was born Kama, Mahpa, and Virsinh and Naisha were the sons of Mahpa. Virsinh’s queen, whose name is Rooda, has constructed this well.<br>
+                    “It is dedicated at this time - when the sun is in the north, the month is Magha, the bright half (Shukla Patsha), the 5th day, the day of the week. Wednesday, the lunar mansion – Uttara, Kanara-Bava, the yoga – Sidahi.”
+                </blockquote>
+                <p>Then follows a glowing description of the well, after which the queen, or 
+                    rather lady of the chief, is praised in a few verses; the expense is stated 
+                    at 5.00.111 tankes or over five lakhs, and the whole ends with a repetition 
+                    of the date as given above.
+                </p>
+
+                <p>The cultural and architectural depiction in the deep wells at various levels are
+                    a tribute to the history of step wells, built initially by Hindus and subsequently 
+                    ornamented and blended with Islamic architecture during the Muslim rule.</p>
+
+                <p>The lake had a water purification system which is lost now. There are well carved supply sluices
+                    on the east side. Their buttresses or jambs of sluices resemble those of the minarets of
+                    mosques in Ahmedabad. Between these buttresses, there is a screen six feet thick screen
+                    punctured by three large openings for inflow of water. These openings are six feet in diameter and
+                    the margin of it is beautifully carved.</p>
+
+                <h4>Attaractionas</h4>
+                <p>Kankaria Zoo, officially Kamla Nehru Zoological Garden, was established by Rueben David in 1951
+                    spread over 21 acres. It was rated the best zoo in Asia in 1974.
+                    They have 450 mammals, 2,000 birds, 140 reptiles in a 31-acre zoo. It houses wild animals like tigers, lions, python, anaconda, snakes, elephants, albino (white) animals like the rhesus monkey, spotted deer, white blackbuck, chinkara, elephant, emu, jungle babbler, bush-quail and common palm civet. Kankaria
+                    Zoo has also bred of rare species like pythons, crocodiles, bearcats and wild asses. Reuben
+                    David was awarded the Padma Shri in 1974 for it.</p>
+
+                <h3>In Kankaria Lake Who Best thing Watch to See</h3>
+                <p>1.Kankaria Zoo</p>
+                <p>2.Kankaria Lake</p>
+                <p>3.Toy Train Rides</p>
+                <p>4.Water Rides</p>
+                <p>5.Water Park</p>
+                <p>6.Food Stalls</p>
+
+                <h3>Additional Info:</h3>
+                <p>The information of Kankaria Lake is where is this place? how many days open and when it is open and colse.</p>
+                <table>
+                    <tr>
+                        <th>Address</th>
+                        <th>Timing</th>
+                        <th>Days</th>
+                        <th>Entry Price</th>
+                    </tr>
+                    <tr>
+                        <td>Kankaria Lake,Maninagar, Ahmedabad</td>
+                        <td>4:00 AM - 10:00 PM</td>
+                        <td>Tuesday - Sunday</td>
+                        <td>25<i class='bx bx-rupee'></i></td>
+                    </tr>
+                </table>
+
+                <h3>Contact Number</h3>
+                <p class="num">+91 6354592403</p>
+            </section>
+            <!-- End of Overview Section -->
+
+
+            <!-- Start of Location and Gallery Section -->
+            <section class="location-gallery-container">
+             <!-- Location Section -->
+                <div class="location">
+                    <h2>Location</h2>
+                    <p>The world is a book, and those who do not travel read only a page.</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d507037.6863252763!2d72.41725073352977!3d23.012185003731652!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395c29dab0c5bf89%3A0xdb1dddc4bdbd398f!2sAdalaj%20Stepwell!5e0!3m2!1sen!2sin!4v1740666646298!5m2!1sen!2sin" 
+                     width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+
+                <!-- Gallery Section -->
+                <div class="gallery">
+                    <h2>Gallery</h2>
+                    <p>A photograph is a secret about a secret. The more it tells you, the less you know.</p> <br>
+                    <div class="gallery-images">
+                        <img src="{% static 'images/TourDetail/Adalaj1.jpg' %}" alt="Gallery Image 1">
+                    </div>
+                </div>
+            </section>
+            <!-- End of Location and Gallery Section -->
+
+
+
+            <!-- Add this after the thumbnail-gallery section and before the overview section -->
+            <section class="guide-selection">
+                <h2>Choose Your Guide For this Monument</h2>
+            
+                <div class="guide-carousel">
+                    <button class="prev-guide">&#10094;</button>
+            
+                    <div class="guides-container">
+                        <div class="guide-profile active">
+                            <div class="guide-image">
+                                <img src="{% static 'images/guides/g3.jpg' %}" alt="Guide - Patel Dhyan">
+                            </div>
+                            <h3 >Patel Dhyan</h3>
+                            <p class="guide-price">Price : 300<i class='bx bx-rupee'></i></p>
+                            
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'bookguide' guide_name='Patel Dhyan' guide_place='Adalaj Stepwell' %}" class="book-guide"> Book Guide </a> 
+                            {% else %}
+                               <br> <p class="booking-info">Login to book a guide <a href="{% url 'login' %}" class="login-link">Login Now</a></p>
+                            {% endif %}
+                        </div>
+            
+                        <div class="guide-profile">
+                            <div class="guide-image">
+                                <img src="{% static 'images/guides/g4.jpg' %}" alt="Guide - Shrey Patel">
+                            </div>
+                            <h3>Shreya Patel</h3>
+                            <p class="guide-price">Price : 400<i class='bx bx-rupee'></i></p>
+            
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'bookguide' guide_name='Shrey Patel' guide_place='Adalaj Stepwell' %}" class="book-guide"> Book Guide </a>
+                            {% else %}
+                                <p class="booking-info">Login to book a guide <a href="{% url 'login' %}" class="login-link">Login Now</a></p>
+                            {% endif %}
+                        </div>
+            
+                        <div class="guide-profile">
+                            <div class="guide-image">
+                                <img src="{% static 'images/guides/g1.jpg' %}" alt="Guide - Darshan Raval">
+                            </div>
+                            <h3>Darshan Raval</h3>
+                            <p class="guide-price">Price : 300<i class='bx bx-rupee'></i></p>
+            
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'bookguide' guide_name='Darshan Raval' guide_place='Adalaj Stepwell' %}" class="book-guide"> Book Guide </a>
+                            {% else %}
+                                <p class="booking-info">Login to book a guide <a href="{% url 'login' %}" class="login-link">Login Now</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
+            
+                    <button class="next-guide">&#10095;</button>
+                </div>
+            </section>
+            <!-- End of Guide Selection -->
+
+
+            <!-- Add this after the overview section and before the location-gallery-container -->
+            <h4 class="r">Enter Rating for places </h4>
+            <section class="ratings-reviews">
+                <form method="POST">
+                    {% csrf_token %}
+                    <label for="rating-select">Select a rating Place:</label>
+                    <select id="rating-select" name="place_name">
+                        <option value="adalaj-stepwell" data-rating="excellent">Adalaj Stepwell</option>
+                        <option value="rani-ki-vav" data-rating="good">Rani Ki Vav</option>
+                        <option value="vintage-car-museum" data-rating="average">The Vintage Car Museum</option>
+                        <option value="sabarmati-aashram" data-rating="poor">Sabarmati Aashram</option>
+                        <option value="hutheesing-jain-temple" data-rating="excellent">Hutheesing Jain Temple</option>
+                        <option value="jama-masjid" data-rating="good">Jama Masjid</option>
+                        <option value="jhulta-minar" data-rating="average">Jhulta Minar</option>
+                        <option value="kankaria-lake" data-rating="poor">Kankaria Lake</option>
+                        <option value="lal-darvaja" data-rating="excellent">Lal Darvaja</option>
+                        <option value="sabarmati-riverfront" data-rating="good">Sabarmati Riverfront</option>
+                    </select>
+                    
+            
+                    <label for="rate">Enter a reating(1-10):</label>
+                    <input type="number" id="rateing" name="rateing" min="1" max="10" placeholder="Enter a number" required>
+            
+                    <button type="submit">Submit</button>
+                </form>
+            </section>
+            <!--End Add this after the overview section and before the location-gallery-container -->
+
+        </main>
+    </div>
+
+    <!-- Trending Tour Section -->
+    <div class="trending-tour">
+        <img src="{% static 'images/places/Heritage-Walk-Thumbnail1.jpg' %}" alt="Trending Tour" class="trending-image">
+        <div class="trending-content">
+            <h2>Discover the beauty and</h2>
+            <h2> culture of your destination</h2> <br>
+        <a href="{% url 'tour' %}" class="btn btn-primary">Trending Tour</a>
+    </div>
+    </div>
+    <!-- End Trending Tour Section -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        // Get all elements
+        const mainImage = document.querySelector('.image-gallery img');
+        const thumbnails = document.querySelectorAll('.thumbnail-gallery img');
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+        
+        // Initialize current image index
+        let currentIndex = 0;
+        const totalImages = thumbnails.length;
+        
+        // Load all image sources into an array for easy access
+        const imageSources = Array.from(thumbnails).map(thumb => thumb.src);
+        
+        // Function to update the main image
+        function updateMainImage(index) {
+            // Make sure index is within bounds
+            if (index < 0) index = totalImages - 1;
+            if (index >= totalImages) index = 0;
+            
+            // Update current index
+            currentIndex = index;
+            
+            // Set the main image source to the selected thumbnail source
+            mainImage.src = imageSources[currentIndex];
+            
+            // Highlight the current thumbnail
+            thumbnails.forEach((thumb, i) => {
+                if (i === currentIndex) {
+                    thumb.style.borderColor = '#a57e3b';
+                    thumb.style.transform = 'scale(1.15)';
+                } else {
+                    thumb.style.borderColor = '#ccc';
+                    thumb.style.transform = 'scale(1)';
+                }
+            });
+        }
+        
+        // Set up click event for previous button
+        prevButton.addEventListener('click', function() {
+            updateMainImage(currentIndex - 1);
+        });
+        
+        // Set up click event for next button
+        nextButton.addEventListener('click', function() {
+            updateMainImage(currentIndex + 1);
+        });
+        
+        // Set up click events for thumbnails
+        thumbnails.forEach((thumbnail, index) => {
+            thumbnail.addEventListener('click', function() {
+                updateMainImage(index);
+            });
+        });
+        
+        // Initialize the gallery with the first image
+        updateMainImage(0);
+    });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const prevButton = document.querySelector('.prev-guide');
+            const nextButton = document.querySelector('.next-guide');
+            const guides = document.querySelectorAll('.guide-profile');
+            let currentGuideIndex = 0;
+            
+            // Hide all guides except the first one
+            guides.forEach((guide, index) => {
+                if (index !== 0) {
+                    guide.classList.remove('active');
+                }
+            });
+            
+            prevButton.addEventListener('click', function() {
+                guides[currentGuideIndex].classList.remove('active');
+                currentGuideIndex = (currentGuideIndex - 1 + guides.length) % guides.length;
+                guides[currentGuideIndex].classList.add('active');
+            });
+            
+            nextButton.addEventListener('click', function() {
+                guides[currentGuideIndex].classList.remove('active');
+                currentGuideIndex = (currentGuideIndex + 1) % guides.length;
+                guides[currentGuideIndex].classList.add('active');
+            });
+        });
+        </script>
+
+</body>
+</html>
+
+{% endblock %}

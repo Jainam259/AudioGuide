@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audio Guide Website</title>
+  <link rel="stylesheet" href="{% static 'css/about.css' %}">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="hero">
+        <img src="{% static 'images/background/aboutus.jpg' %}" alt="Tour Place">
+        <div class="overlay">
+            <h1>About Us</h1>
+        </div>
+      </header>
+    <!--Ended Header Section -->
+
+    <!-- Breadcrumb -->
+    <!-- <div class="breadcrumb">Home > About Us</div> -->
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <ul>
+            <li><a href="{% url 'index' %}">Home > About Us</a></li>
+        </ul>
+    </nav>
+    <!-- End Breadcrumb -->
+
+    <!-- start -->
+    <section class="about-content">
+      <div class="text-section">
+          <h4>Best agency</h4>
+          <h2>Why choose our Family</h2>
+          <p class="abc">Welcome to The Traveler's Bible, your ultimate source for travel inspiration and 
+            information. We are a team of passionate travelers and experienced tour guideswho believe that travel should 
+             be accessible, enjoyable, and memorable for everyone.<br><br>
+
+             Our goal is to provide you with everything you need to plan your next trip, whether it's a weekend 
+             getaway or a round-the-world adventure. We offer expert advice,  insider tips, and detailed travel 
+             guides to help you make the most of your travels. Our aim is to help you discover new destinations, 
+             cultures, and experiences that you'll never forget.<br><br>
+
+             At The Traveler's Bible, we believe that travel is more than just visiting a place; it's about creating 
+            meaningful connections and lifelong memories. Whether you're an experienced traveler or just starting out,
+             we're here to help you make your travel dreams a reality. So join us on this exciting journey, and let's explore
+              the world together!</p>   
+      </div>
+      <div class="image-section">
+          <img src="{% static 'images/background/a1.jpg' %}" class="img1">
+          <img src="{% static 'p4.jpg' %}" class="img2">
+
+      </div>
+  </section>
+  <!-- end -->
+
+  <!-- start -->
+  <section class="features-section">
+    <div class="feature">
+        <div class="feature-icon">
+            <img src="{% static 'images/icons/i1.png' %}" alt="Trust & Safety">
+             
+        </div>
+        <h3>Trust & Safety</h3>
+        <p class="abc">Our tourism guide website is a reliable source of information for exploring the monuments and 
+            tourist destinations of Gujarat. With accurate information and an interactive audio-based guide 
+            system, we provide a unique and informative experience for visitors. Our website is also 
+            accessible in multiple languages and offers easy online ticket booking. Trust us for a memorable 
+            and enjoyable trip.</p>
+    </div>
+    
+    <div class="feature">
+        <div class="feature-icon">
+            <img src="{% static 'images/icons/i2.png' %}" alt="Multi-Language Support">
+        </div>
+        <h3>Multi-Language Support</h3>
+        <p>The website information is available in multiple languages, making it accessible to tourists 
+            from around Gujarat.</p>
+    </div>
+</section>
+    <!-- end -->
+
+<p class="special-offer">
+    <a href="#">Make your holiday Special</a>
+</p>
+<br><br>
+
+  <!-- start -->
+
+<section class="about-container">
+    <div class="image-container">
+        <img src="{% static 'images/background/back1.jpg' %}" alt="Historical Monument">
+    </div>
+    <div class="text-container">
+        <h2>Achieve Summary</h2>
+        <p class="abc">
+            An audio-based guide for monuments is a digital platform that provides visitors with audio recordings 
+            of historical landmarks and attractions. The website allows visitors to access the audio guide through 
+            their mobile device or computer and offers a more immersive experience than traditional guidebooks.
+        </p>
+        <p class="abc">
+            Overall, an audio-based guide for monuments can enhance the visitor experience by providing a more 
+            engaging and informative way to learn about the history and significance of these important landmarks. 
+            It can also help to attract more visitors to the monuments and increase their visibility and popularity.
+        </p>
+    </div>
+</section>
+<!-- end -->
+
+     <!-- start -->
+        <section class="about-sv">
+            <div class="text-container-sv">
+                <h2>Our Values</h2>
+                <p class="abc">Enhanced Visitor Experience: Audio-based guides provide a more engaging and interactive experience to visitors, 
+                    making their visit to monuments more enjoyable.
+                </p>
+                <p class="abc">
+                    Personalization and Customization: Audio-based guides can be tailored to the preferences and interests of visitors, 
+                    creating a personalized and enjoyable experience for them.
+                </p>
+                <p class="abc">
+                    Convenience: Visitors can access the audio guide through their mobile device or audio player, making it easy to use 
+                    while exploring the monument.
+                </p>
+            </div>
+            <div class="image-container-sv">
+                <img src="{% static 'images/background/back2.jpg' %}" alt="Historical Monument">
+            </div>
+        </section>
+        <!-- end --><br><br>
+
+            <!-- start -->
+        <h2 class="vi">Gujarat Culture</h2>
+        <div class="video-container">
+            <img src="{% static 'b1.jpg' %}" class="video-thumbnail" alt="Gujarat Culture">
+            <button class="play-button" onclick="openYouTubeVideo()"></button>
+        </div>
+        
+        <script>
+            function openYouTubeVideo() {
+                window.open("https://youtu.be/k3OolA45orE?si=Q1wXHiOmOU6jVXiY", "_blank");
+            }
+        </script>
+        <br><br>
+        <!-- end -->
+
+        <!-- start -->
+        <h2 class="vi">Our Teams</h2>
+        
+
+            <div class="team-container">
+                <div class="team-member">
+                    <img src="{% static 'darshan.jpg' %}" alt="Person 1">
+                    <div class="overlay">
+                        <h3>Darshan Pindoriya</h3>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <img src="{% static 'images/icons/jainam.jpg' %}" alt="Person 2">
+                    <div class="overlay">
+                        <h3>Jainam Shah</h3>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <img src="{% static 'shrey.jpg' %}" alt="Person 3">
+                    <div class="overlay">
+                        <h3>Shrey Vagadiya</h3>
+                    </div>
+                </div>
+            </div>
+            <br><br><br><br><br>
+            <!-- start -->
+
+            <div class="testimonial-container">
+                <h2 class="testimonial-heading">Client Feedback</h2>
+                <div class="testimonial-content">
+                    <button class="prev-btn">&#8592;</button>
+                    <div class="testimonial">
+                        <img id="client-img" src="{% static 'jainam.jpg' %}" alt="Client Image">
+                        <h3 id="client-name">Patel Dhyan</h3>
+                        <p id="client-role">Backend Designer</p>
+                        <p id="client-feedback">
+                            "I really had my doubts at first. I asked for a quote online, and the next day I was contacted by a sales representative. The quote came out high, so the salesman did a good job to find me a good deal."
+                        </p>
+                    </div>
+                    
+                    <button class="next-btn">&#8594;</button>
+                </div>
+            </div>
+        
+            <script src="{% static 'script.js' %}"></script>   
+            <!-- end -->
+             <br><br>
+
+             <!-- start -->
+    <div class="hero-section">
+    <h1>Discover the beauty and <br>culture of your destination</h1>
+    <a href="tour.html"><button class="hero-button">Trending Tour</button></a>
+  </div>
+  <!-- end -->
+</body>
+</html>
+
+{% endblock %}

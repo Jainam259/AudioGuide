@@ -1,0 +1,256 @@
+/* Hero Section */
+.hero {
+    position: relative;
+    width: 100%;
+    margin-top: 0px;
+}
+
+.hero img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+
+/* Breadcrumb Section */
+.breadcrumb {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.breadcrumb ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumb li {
+    margin: 0 5px;
+    font-size: 18px;
+    color: #555;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+}
+
+.breadcrumb .current {
+    font-weight: bold;
+    color: #333;
+}
+/* End Breadcrumb Section */
+
+
+
+
+
+ /* Tour Listing Section CSS */
+.tour-listing {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.listing-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.monuments-count {
+    font-size: 18px;
+    color: #666;
+}
+
+.sort-options {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.sort-options select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.view-toggle {
+    display: flex;
+    gap: 10px;
+}
+
+.view-toggle i {
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.monuments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.monument-card {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card-image {
+    position: relative;
+    height: 400px; /* Set Image Size */
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tag {
+    position: absolute;
+    bottom: 15px;
+    right: 10px;
+    background: white;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 15px;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.rating i {
+    color: #ffd700;
+    font-size: 18px;
+}
+
+.rating span {
+    color: #666;
+    font-size: 14px;
+}
+
+.timing {
+    margin: 15px 0;
+    color: #666;
+}
+
+.timing .days {
+    color: #999;
+    margin-left: 10px;
+}
+
+.contact {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.explore-btn {
+    width: 40%;
+    padding: 12px;
+    background: #c19b76;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.explore-btn:hover {
+    background: black;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .monuments-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    .listing-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+}
+/* End Tour Listing Section CSS */
+
+
+
+
+
+
+/* Trending Tour Section CSS */
+.trending-tour {
+    position: relative;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.trending-image {
+    width: 100%;
+    height: auto;
+}
+
+.trending-content {
+    font-family: 'Times New Roman', serif;
+    font-size: 1.5em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.btn-primary {
+    /* background-color: #beab54; Change this to suit your theme */
+    background-color: rgb(188,158,96);
+    color: white; /* Change to desired text color */
+    text-decoration: none;
+    padding: 12px 24px;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: rgb(168, 138, 76);
+}
+/* End Trending Tour Section CSS */

@@ -1,0 +1,268 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Booking Confirmation</title>
+        <style>
+        /* Hero Section */
+        .hero {
+            position: relative;
+            width: 100%;
+            margin-top: 0px;
+        }
+
+        .hero img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            background-attachment:fixed; 
+        }
+
+        .overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        /* Breadcrumb Section */
+        .breadcrumb {
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px 20px;
+            border-radius: 5px;
+            
+        }
+
+        .breadcrumb ul {
+            list-style: none;
+            display: flex;
+            padding: 0;
+            margin: 0;
+        }
+
+        .breadcrumb li {
+            margin: 0 5px;
+            font-size: 18px;
+            color: #555;
+        }
+
+        .breadcrumb a {
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .breadcrumb .current {
+            font-weight: bold;
+            color: #333;
+        }
+        /* End Breadcrumb Section */
+
+
+        .confirmation-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .success-icon {
+            font-size: 72px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        .confirmation-message {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .next-steps {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .next-steps h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 10px;
+        }
+        .btn-secondary {
+            background-color: #2196F3;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 10px;
+        }
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .alert-warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+    </style>
+    </head>
+    <body>
+
+        <!-- Header Section -->
+        <header class="hero">
+            <img src="{% static 'images/background/8.jpg' %}" alt="Tour Place">
+            <div class="overlay">
+                <h1>Booking Confirmation</h1>
+            </div>
+        </header>
+        <!--Ended Header Section -->
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li>></li>
+                <li><a href="{% url 'tour' %}">Tour</a></li>
+                <li>></li>
+                <li class="current">Booking Confirmation</li>
+            </ul>
+        </nav>
+        <!-- End Breadcrumb -->
+
+        <div class="confirmation-container">
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div
+                    class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <div class="success-icon">✓</div>
+
+            <div class="confirmation-message">
+                Your booking has been successfully confirmed!
+            </div>
+
+            {% if sms_sent %}
+            <div class="alert alert-success">
+                We have sent a confirmation SMS with your booking details.
+            </div>
+            {% else %}
+            <div class="alert alert-warning">
+                We could not send an SMS confirmation because your number is not
+                verified with our SMS provider.
+                Please save the booking details below for your reference.
+            </div>
+            {% endif %}
+
+            <div class="next-steps">
+                <h3>Booking Details</h3>
+                <div
+                    style="margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 4px; border: 1px solid #ddd;">
+                    <p><strong>Guide:</strong> {{ guide_name }}</p>
+                    <p><strong>Location:</strong> {{ guide_place }}</p>
+                    <p><strong>Booked by:</strong> {{ user_name }}</p>
+                    <p><strong>Email:</strong> {{ user_email }}</p>
+                    <p><strong>Date:</strong> {{ date }}</p>
+                    <p><strong>Time:</strong> {{ time }}</p>
+                    <p><strong>Number of Visitors:</strong> {{ member }}</p>
+                    <p><strong>Price:</strong> ₹{{ price }}</p>
+                </div>
+
+                <div class="message-box"
+                    style="margin: 20px 0; padding: 15px; background-color: #e9f7ef; border-radius: 4px; border: 1px solid #d4edda;">
+                    <h4 style="color: #155724; margin-top: 0;">Booking
+                        Confirmation</h4>
+                    <p style="white-space: pre-line;">{{ user_message }}</p>
+                </div>
+
+                <h3>What's Next?</h3>
+                <ol>
+                    <li>You'll receive a confirmation SMS with all booking
+                        details if your mobile number is verified.</li>
+                    <li>The guide has been notified about your booking and will
+                        be expecting you.</li>
+                    <li>Please arrive at the location 15 minutes before your
+                        scheduled time.</li>
+                    <li>Don't forget to bring your mobile phone to show your
+                        booking reference if needed.</li>
+                </ol>
+            </div>
+
+            <div class="actions">
+                <a href="{% url 'profile_page' %}" class="btn-primary">View My
+                    Bookings</a>
+                <a href="{% url 'tour' %}" class="btn-secondary">Explore More
+                    Tours</a>
+            </div>
+        </div>
+
+        <script>
+        // Check if redirect to profile is needed
+        {% if redirect_to_profile %}
+            // Set a timeout to redirect to profile page after 5 seconds
+            setTimeout(function() {
+                window.location.href = "{% url 'profile_page' %}";
+            }, 5000);
+            
+            // Show countdown
+            let seconds = 5;
+            const countdownElement = document.createElement('div');
+            countdownElement.style.position = 'fixed';
+            countdownElement.style.bottom = '20px';
+            countdownElement.style.right = '20px';
+            countdownElement.style.padding = '10px 15px';
+            countdownElement.style.background = 'rgba(0,0,0,0.7)';
+            countdownElement.style.color = 'white';
+            countdownElement.style.borderRadius = '5px';
+            countdownElement.style.zIndex = '1000';
+            document.body.appendChild(countdownElement);
+            
+            const countdownInterval = setInterval(function() {
+                seconds--;
+                countdownElement.textContent = "Redirecting to profile in " + seconds + " seconds...";
+                if (seconds <= 0) {
+                    clearInterval(countdownInterval);
+                }
+            }, 1000);
+        {% endif %}
+    </script>
+    </body>
+</html>
+
+{% endblock %}
