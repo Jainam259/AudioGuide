@@ -1,0 +1,156 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Your Booking</title>
+    <link rel="stylesheet" href="{% static 'css/otp_verification.css' %}">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="hero">
+        <img src="{% static 'images/background/8.jpg' %}" alt="Tour Place">
+        <div class="overlay">
+            <h1>Verify Otp</h1>
+        </div>
+      </header>
+    <!--Ended Header Section -->
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li>></li>
+            <li><a href="{% url 'tour' %}">Tour</a></li>
+            <li>></li>
+            <li><a href="{% url 'tour-detail1' %}">Tour Detail</a></li>
+            <li>></li>
+            <li class="current">Verify OTP</li>
+        </ul>
+      </nav>
+      <!-- End Breadcrumb -->
+
+    <div class="verification-container">
+        <h1>Verify Your Booking</h1>
+        
+        <div class="notification" id="notification">
+            Guide Booking for you can use this OTP for Conformation:
+            <div id="test-otp">000000</div>
+        </div>
+        
+        <div class="info-text">
+            We've sent a 6-digit OTP to your registered Website:<br>
+            <span class="email" id="user-email"> {{ user.email }} </span>
+        </div>
+        
+        <p>Please enter the OTP below to confirm your booking.</p>
+        
+        <input type="text" class="otp-input" placeholder="Enter 6-digit OTP" maxlength="6" id="otp-input">
+        
+        <div class="expiry" id="expiry-timer">OTP expires in: 05:00</div>
+        
+        <div class="buttons">
+           <a href="{% url 'profilepage' %}" class="verify-btn" onclick="verifyOTP()">Verify OTP</a>
+            <button class="cancel-btn">Cancel</button>
+        </div>
+        
+        <div>
+            Didn't receive the OTP? <a href="#" class="resend-link" onclick="resendOTP()">Resend OTP</a>
+        </div>
+        
+        <div class="help-text">
+            Having trouble receiving emails? 
+            <span class="help-links">
+                <a href="#">Check email setup instructions</a> or 
+                <a href="#">Debug email issues</a>
+            </span>
+        </div>
+        
+        <div id="otp-display"></div>
+    </div> <br><br>
+    <script>
+        // Sample email - would normally come from your system
+        document.getElementById('user-email').textContent = "user@example.com";
+        
+        // Generate a random 6-digit OTP
+        function generateOTP() {
+            return Math.floor(100000 + Math.random() * 900000).toString();
+        }
+        
+        // Set initial OTP
+        let currentOTP = generateOTP();
+        document.getElementById('test-otp').textContent = currentOTP;
+        
+        // Timer functionality
+        let timeLeft = 300; // 5 minutes in seconds
+        let timer = setInterval(updateTimer, 1000);
+        
+        function updateTimer() {
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                document.getElementById('expiry-timer').textContent = "OTP expired";
+                currentOTP = null; // Invalidate OTP
+            } else {
+                const minutes = Math.floor(timeLeft / 60);
+                document.getElementById('expiry-timer').textContent = 
+                `OTP expires in: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                timeLeft--;
+            }
+        }
+        
+        // Resend OTP functionality
+        function resendOTP() {
+            // Generate new OTP
+            currentOTP = generateOTP();
+            
+            // Display the new OTP
+            document.getElementById('test-otp').textContent = currentOTP;
+            
+            // Show OTP display for confirmation
+            const otpDisplay = document.getElementById('otp-display');
+            otpDisplay.textContent = `New OTP: ${currentOTP}`;  // Use backticks for string interpolation
+            otpDisplay.style.display = 'block';
+
+            
+            // Reset timer
+            clearInterval(timer);
+            timeLeft = 300;
+            timer = setInterval(updateTimer, 1000);
+            updateTimer();
+            
+            // Show notification about new OTP
+            const notification = document.getElementById('notification');
+            notification.style.display = 'block';
+            
+            // Hide the notification after 5 seconds
+            setTimeout(() => {
+                otpDisplay.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Verify OTP functionality
+        function verifyOTP() {
+            const inputOTP = document.getElementById('otp-input').value;
+            
+            if (!currentOTP) {
+                alert("OTP has expired. Please request a new one.");
+                return;
+            }
+            
+            if (inputOTP === currentOTP) {
+                alert("OTP verified successfully! Proceeding with your booking.");
+                // Here you would typically redirect to a confirmation page or next step
+            } else {
+                alert("Invalid OTP. Please check and try again.");
+            }
+       }
+ </script>
+    
+</body>
+</html>
+
+
+{% endblock %}

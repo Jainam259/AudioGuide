@@ -1,0 +1,22 @@
+<!-- Add this section to your template -->
+{% if not otp_success and allow_manual_verify %}
+<div class="alert alert-warning">
+    <strong>Development Mode:</strong> SMS sending failed, but you can proceed with verification.
+    <p>OTP for testing: {{ request.session.booking_data.otp }}</p>
+</div>
+{% endif %}
+
+<!-- Make sure your form looks something like this -->
+<form method="post" action="{% url 'verify_otp' %}">
+    {% csrf_token %}
+    <div class="otp-input-container">
+        <!-- Your OTP input fields -->
+    </div>
+    <button type="submit" class="submit-btn">Verify OTP</button>
+</form>
+
+{% if not otp_success %}
+<div class="resend-container">
+    <p>Didn't receive OTP? <a href="{% url 'resend_otp' %}">Resend OTP</a></p>
+</div>
+{% endif %} 

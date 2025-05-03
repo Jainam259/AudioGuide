@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/profilepage.css' %}">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Welcome back, <strong>{{ user.username }}</strong>!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <!-- Messages section for notifications -->
+        {% if messages %}
+        <div class="row mb-4">
+            <div class="col-md-12">
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="row">
+            <!-- Profile Card -->
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Profile Information</h5>
+                    </div>
+                    <div class="card-body text-center">
+                        <img src="{% static 'images/icone/i1.png' %}" alt="Profile Picture" class="rounded-circle img-fluid" style="width: 120px;">
+                        <h3 class="mt-2">{{ user.username }}</h3>
+                        <p class="text-muted">Member since: {{ user.date_joined|date:"F d, Y" }}</p>
+                        <p>Email: {{ user.email }}</p>
+                        <p>Last Login: {{ user.last_login }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking Details -->
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Your Bookings</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Guide</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Member</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if bookings %}
+                                    {% for booking in bookings %}
+                                    <tr {% if booking.status == "Cancelled" %}class="table-danger"{% endif %}>
+                                        <td>{{ booking.guide_name }}</td>
+                                        <td>{{ booking.date }}</td>
+                                        <td>{{ booking.start_time }} - {{ booking.end_time }}</td>
+                                        <td>{{ booking.member }}</td>
+                                        <td>₹{{ booking.price }}</td>
+                                        <td>
+                                            {% if booking.status == "Confirmed" %}
+                                                <span class="badge bg-success">Confirmed</span>
+                                            {% else %}
+                                                <span class="badge bg-danger">Cancelled</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#bookingModal{{ booking.id }}">Details</button>
+                                            {% if booking.status == "Confirmed" %}
+                                                <form method="POST" action="{% url 'cancel_booking' booking.id %}" style="display: inline;">
+                                                    {% csrf_token %}
+                                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to cancel this booking? A notification will be sent to the guide.')">Cancel</button>
+                                                </form>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <!-- Booking Details Modal -->
+                                    <div class="modal fade" id="bookingModal{{ booking.id }}" tabindex="-1" aria-labelledby="bookingModalLabel{{ booking.id }}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="bookingModalLabel{{ booking.id }}">Booking Details</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p><strong>Guide:</strong> {{ booking.guide_name }}</p>
+                                                    <p><strong>Date:</strong> {{ booking.date }}</p>
+                                                    <p><strong>Time:</strong> {{ booking.start_time }} - {{ booking.end_time }}</p>
+                                                    <p><strong>Members:</strong> {{ booking.member }}</p>
+                                                    <p><strong>Price:</strong> ₹{{ booking.price }}</p>
+                                                    <p><strong>Status:</strong> 
+                                                        {% if booking.status == "Confirmed" %}
+                                                            <span class="badge bg-success">Confirmed</span>
+                                                        {% else %}
+                                                            <span class="badge bg-danger">Cancelled</span>
+                                                            <small class="text-muted d-block mt-1">The guide has been notified of this cancellation.</small>
+                                                        {% endif %}
+                                                    </p>
+                                                    <p><strong>Phone:</strong> {{ booking.phone_number }}</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan="7" class="text-center">
+                                            <div class="alert alert-info mb-0">
+                                                <h5>No bookings found</h5>
+                                                <p>You don't have any bookings yet. <a href="{% url 'tour' %}" class="alert-link">Book a tour now!</a></p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Account Settings -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Account Settings</h5>
+                    </div>
+                    <div class="card-body text-center">
+                        <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+{% endblock %}

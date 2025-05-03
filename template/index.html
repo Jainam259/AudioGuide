@@ -1,0 +1,326 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audio Guide Website</title>
+  <link rel="stylesheet" href="{% static 'css/styles1.css' %}">
+  <link rel="stylesheet" href="{% static 'css/slider.css' %}">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel='stylesheet'>
+</head>
+
+<body>
+
+  <!--Hero Section with Improved Slider-->
+  <div class="hero-section">
+    <div class="slider">
+      <img src="{% static 'images/main-slider/kirti-mandir.jpg' %}" class="active">
+      <img src="{% static 'images/main-slider/India.jpg' %}">
+      <img src="{% static 'images/main-slider/carousel-2.jpg' %}">
+      <img src="{% static 'images/main-slider/Sun-Temple-Banner.jpg' %}">
+      <img src="{% static 'images/main-slider/Dwarkadhish Temple30.jpg' %}">
+      <img src="{% static 'images/main-slider/Dwarkadhish-Temple-1.jpg' %}">
+      <img src="{% static 'images/main-slider/carousel-1.jpg' %}">
+      <img src="{% static 'images/main-slider/pavagadhtemplefrontview.jpg' %}">
+      <img src="{% static 'images/main-slider/1.jpg' %}">
+    </div>
+
+    <div class="hero-overlay">
+      <h1>Discover Gujarat's Rich Heritage</h1>
+      <p>Experience the beauty and culture through our interactive audio guides</p>
+      <a href="{% url 'tour' %}" class="hero-btn">Explore Tours</a>
+    </div>
+
+  </div>
+  <script src="{% static 'script1.js' %}"></script>
+  <script src="{% static 'script2.js' %}"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <!--End Hero Section-->
+
+  <!--About Our Service Section-->
+  <section class="service-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">What We Offer</span>
+        <h2 class="section-title">Your Personal Audio Guide</h2>
+      </div>
+      <div class="service-features">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class='bx bx-headphone'></i>
+          </div>
+          <h3>Audio Tours</h3>
+          <p>Immersive audio experiences that bring monuments to life</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class='bx bx-globe'></i>
+          </div>
+          <h3>Multiple Languages</h3>
+          <p>Tours available in various languages for all visitors</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class='bx bx-map-alt'></i>
+          </div>
+          <h3>Guided Navigation</h3>
+          <p>Easy-to-follow routes through historical sites</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--End About Our Service Section-->
+
+
+  <!--Image Slider-->
+  <div class="sv">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+          <div class="swiper-slide">
+              <img src="{% static 'images/places/Adalaj.jpg' %}" alt="Adalaj Stepwell">
+              <div class="slide-title">Adalaj Stepwell</div>
+          </div>
+          <div class="swiper-slide">
+              <img src="{% static 'images/places/Jhulta-Minara-Thumbnail.jpg' %}" alt="Jhulta Minara">
+              <div class="slide-title">Jhulta Minara</div>
+          </div>
+          <div class="swiper-slide">
+              <img src="{% static 'images/places/peakpx.jpg' %}" alt="Statue of Unity">
+              <div class="slide-title">Statue of Unity</div>
+          </div>
+          <div class="swiper-slide">
+            <img src="{% static 'images/places/ran kutch.jpg' %}" alt="Ran of Kutch">
+            <div class="slide-title">Ran of Kutch</div>
+        </div>
+        <div class="swiper-slide">
+          <img src="{% static 'images/places/Bai Harir ni Vav5.jpg' %}" alt="Bai Harir ni Vav">
+          <div class="slide-title">Bai Harir ni Vav</div>
+        </div>
+        <div class="swiper-slide">
+          <img src="{% static 'images/places/Sabarmati-Ashram-Banner.jpg' %}" alt="Sabarmati Ashram">
+          <div class="slide-title">Sabarmati Ashram</div>
+        </div>
+      </div>
+  
+      <!-- Navigation Buttons -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </div>
+
+  <!--Cities Section-->
+  <section class="cities-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Discover</span>
+        <h2 class="section-title">Gujarat Cities</h2>
+        <p class="section-description">Gujarat has 31 vibrant cities, each with its unique culture and heritage</p>
+      </div>
+
+      <div class="cities-grid">
+        <div class="city-card">
+          <div class="city-image">
+            <a href="{% url 'ahmedabad' %}"> <img src="{% static 'images/places/India - Architecture and Nature.jpg' %}" alt="Ahmedabad"> </a>
+            <div class="city-overlay"></div>
+          </div>
+          <div class="city-content">
+            <h3>Ahmedabad</h3>
+            <p>📍 Gujarat's largest city</p>
+            <a href="{% url 'ahmedabad' %}" class="explore-btn">Explore</a>
+          </div>
+        </div>
+    
+        <div class="city-card">
+          <div class="city-image">
+            <img src="{% static 'images/cities/surat.jpg' %}" alt="Surat">
+            <div class="city-overlay"></div>
+          </div>
+          <div class="city-content">
+            <h3>Surat</h3>
+            <p>📍 The Diamond City</p>
+            <a href="#" class="explore-btn">Explore</a>
+          </div>
+        </div>
+    
+        <div class="city-card">
+          <div class="city-image">
+            <img src="{% static 'images/cities/dwraka.jpg' %}" alt="Dwraka">
+            <div class="city-overlay"></div>
+          </div>
+          <div class="city-content">
+            <h3>Dwarka</h3>
+            <p>📍 Ancient holy city</p>
+            <a href="#" class="explore-btn">Explore</a>
+          </div>
+        </div>
+
+        <div class="city-card">
+          <div class="city-image">
+            <img src="{% static 'images/cities/somnath.jpg' %}" alt="somnath">
+            <div class="city-overlay"></div>
+          </div>
+          <div class="city-content">
+            <h3>Somnath</h3>
+            <p>📍 Home to the sacred temple</p>
+            <a href="#" class="explore-btn">Explore</a>
+          </div>
+        </div>
+      
+        <div class="city-card">
+          <div class="city-image">
+            <img src="{% static 'images/cities/patan.jpg' %}" alt="patan">
+            <div class="city-overlay"></div>
+          </div>
+          <div class="city-content">
+            <h3>Patan</h3>
+            <p>📍 Known for Patola sarees</p>
+            <a href="#" class="explore-btn">Explore</a>
+          </div>
+        </div>
+      
+        <div class="city-card">
+          <div class="city-image">
+            <img src="{% static 'images/cities/bhavnager.jpg' %}" alt="bhavnagar">
+            <div class="city-overlay"></div>
+          </div>
+          <div class="city-content">
+            <h3>Bhavnagar</h3>
+            <p>📍 Cultural capital</p>
+            <a href="#" class="explore-btn">Explore</a>
+          </div>
+        </div>
+      </div>
+
+      
+
+    </div>
+  </section>
+  <!--End Cities Section-->
+
+  <!--Indian Culture Section-->
+  <section class="culture-section">
+    <div class="container">
+      <div class="culture-content">
+        <div class="culture-text">
+          <span class="section-subtitle">Experience</span>
+          <h2 class="section-title">Indian Culture</h2>
+          <p>"A nation's culture resides in the hearts and in the soul of its people."</p>
+          <p>Discover the rich tapestry of Indian traditions, art, and heritage through our guided tours.</p>
+          <a href="{% url 'tour' %}" class="btn-culture">Explore Cultural Tours</a>
+        </div>
+      
+        <div class="video-container">
+          <!-- Video Thumbnail (Visible Initially) -->
+          <div class="video-thumbnail" onclick="playVideo()">
+            <img src="{% static 'images/india.jpg' %}" alt="Video Thumbnail" class="thumbnail-image">
+            <span class="play-icon">▶</span>
+          </div>
+      
+          <!-- Cancel Button (Hidden Initially) -->
+          <button class="cancel-button" onclick="cancelVideo()" style="display: none;">✕ Cancel</button>
+      
+          <!-- YouTube Video Embed (Hidden Initially) -->
+          <iframe id="culture-video" src="" style="display: none;" width="600" height="400" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--End Indian Culture Section-->
+
+  <!--Why Choose Us Section-->
+  <section class="why-us-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Best Agency</span>
+        <h2 class="section-title">Why Choose Our Agency</h2>
+      </div>
+      
+      <div class="why-us-content">
+        <div class="why-us-text">
+          <p>Welcome to our tourism guide website, your ultimate resource for exploring the rich cultural heritage of Gujarat. Our website is designed to provide comprehensive information and a unique audio-based experience for visitors looking to discover the monuments and tourist destinations in Gujarat.</p>
+          <p>With in-depth information and an engaging audio-based guide system, our website offers a comprehensive and interactive way to learn about the history and cultural significance of each location.</p>
+          <ul class="why-us-features">
+            <li><i class='bx bx-check-circle'></i> Comprehensive audio guides in multiple languages</li>
+            <li><i class='bx bx-check-circle'></i> Detailed historical information about each site</li>
+            <li><i class='bx bx-check-circle'></i> Easy navigation and user-friendly interface</li>
+            <li><i class='bx bx-check-circle'></i> Regular updates with new destinations</li>
+          </ul>
+          <a href="{% url 'tour' %}" class="cta">Make Your Holiday Special With Us</a>
+        </div>
+        
+        <div class="info-boxes">
+          <div class="box">
+            <img src="{% static 'images/icons/i1.png' %}">
+            <h3>Trust & Informative</h3>
+            <p>Our tourism guide website is a reliable source of information for exploring the monuments and tourist destinations of Gujarat.</p>
+          </div>
+
+          <div class="box">
+            <img src="{% static 'images/icons/i2.png' %}">
+            <h3>Multi-Language Support</h3>
+            <p>The website information is available in multiple languages, making it accessible to tourists from around Gujarat and beyond.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--End Why Choose Us Section-->
+
+  <!--Culture of Gujarat Section-->
+  <section class="gujarat-culture-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Experience</span>
+        <h2 class="section-title">Culture of Gujarat</h2>
+        <p class="section-description">Immerse yourself in the vibrant traditions and heritage of Gujarat</p>
+      </div>
+      
+      <div class="video-wrapper">
+        <div class="video-container">
+          <div class="video-card">
+            <video src="{% static 'video/v1.mp4' %}" autoplay loop muted></video>
+            <div class="video-overlay">
+              <h3>Traditional Dance</h3>
+            </div>
+          </div>
+          <div class="video-card">
+            <video src="{% static 'video/v2.mp4' %}" autoplay loop muted></video>
+            <div class="video-overlay">
+              <h3>Festivals</h3>
+            </div>
+          </div>
+          <div class="video-card">
+            <video src="{% static 'video/v3.mp4' %}" autoplay loop muted></video>
+            <div class="video-overlay">
+              <h3>Heritage</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--End Culture of Gujarat Section-->
+
+  <!--Call to Action Section-->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to Explore Gujarat?</h2>
+        <p>Book your audio guide now and discover the rich heritage and culture of Gujarat</p>
+        <div class="cta-buttons">
+          <a href="{% url 'tour' %}" class="btn-primary">View Tours</a>
+          <a href="{% url 'contact' %}" class="btn-secondary">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--End Call to Action Section-->
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,520 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Audio Guide UI</title>
+        <link rel="stylesheet" href="{% static 'css/tour-detail10.css' %}">
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel='stylesheet'>
+        <link rel="stylesheet" href="{% static 'css/boxicons.min.css' %}">
+    </head>
+    <body>
+
+        <!-- Header Section -->
+        <header class="hero">
+            <img src="{% static 'images/background/akshar.jpg' %}"
+                alt="Tour Place">
+            <div class="overlay">
+                <h1>Tour Detail</h1>
+            </div>
+        </header>
+        <!--Ended Header Section -->
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li>></li>
+                <li class="current">Tour Detail</li>
+            </ul>
+        </nav>
+        <!-- End Breadcrumb -->
+
+        <!--Start of Image and Places -->
+        <div class="container">
+            <aside class="sidebar">
+                <button class="search-btn">Search Places</button>
+                <div class="categories">
+                    <h3>Cities</h3>
+                    <ul>
+                        <li> <a href="{% url 'ahmedabad' %}"> Ahmedabad </a>
+                        </li>
+                        <li> <a href="#"> Surat </a> </li>
+                        <li> <a href="#"> Amreli </a> </li>
+                        <li> <a href="#"> Veraval </a> </li>
+                        <li> <a href="#"> Bhavnagar </a> </li>
+                        <li> <a href="#"> Patan </a> </li>
+                    </ul>
+                    <h3>Nearby Places</h3>
+                    <ul>
+                        <li> <a href="#"> Rani Ki Vav </a> </li>
+                        <li> <a href="#"> The Vintage Car Museum </a> </li>
+                        <li> <a href="#"> Sabarmati Ashram </a> </li>
+                        <li> <a href="#"> Hutheesing Jain Temple </a> </li>
+                        <li> <a href="#"> Jama Masjid </a> </li>
+                        <li> <a href="#"> Jhulta Minar </a> </li>
+                        <li> <a href="#"> Kankaria Lake </a> </li>
+                        <li> <a href="#"> Lal Darwaza </a> </li>
+                        <li> <a href="#"> Sabarmati Riverfront </a> </li>
+                    </ul>
+                </div>
+            </aside>
+
+            <main class="content">
+                <header class="place-header">
+                    <div class="place-info">
+                        <div>
+                            Average Rating: {{ avg_rating }} / 10 <span>
+                                {% for _ in ""|ljust:avg_rating %}
+                                    ⭐
+                                {% endfor %}
+                            </span><br>
+                           Total Ratings: {{ total_ratings }}                    
+                        </div>
+                        <h1>Sabarmati Riverfront</h1>
+                        <p><span>📍</span> Ahmedabad, Gujarat</p> <br>
+                        <p><span>📞</span> 6354592403</p>
+                    </div>
+                    <div class="audio-section">
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'Audio10' %}" class="audio-btn">Listen
+                            Audio</a>
+                        {% else %}
+                        <a href="#" class="audio-btn">Login To Listen Audio</a>
+                        {% endif %}
+                        <br>
+                        <span class="category">Historical</span>
+                    </div>
+                </header>
+
+                <section class="image-gallery">
+                    <button class="prev">&#10094;</button>
+                    <img src="{% static 'images/TourDetail/riverfront1.jpg' %}"
+                        alt="Sabarmati Riverfront">
+                    <button class="next">&#10095;</button>
+                </section>
+                <div class="thumbnail-gallery">
+                    <img src="{% static 'images/TourDetail/riverfront1.jpg' %}"
+                        alt="Thumbnail 1">
+                    <img src="{% static 'images/TourDetail/riverfront2.jpg' %}"
+                        alt="Thumbnail 2">
+                    <img src="{% static 'images/TourDetail/riverfront3.jpg' %}"
+                        alt="Thumbnail 3">
+                    <img src="{% static 'images/TourDetail/riverfront4.jpg' %}"
+                        alt="Thumbnail 4">
+                </div>
+                <!--End of Image and Places -->
+
+                <!-- Start of Overview Section -->
+                <section class="overview">
+                    <h2>Overview</h2>
+                    <h3>About the Place:</h3> <br>
+                    <h4>Sabarmati Riverfront</h4>
+                    <p>Sabarmati Riverfront is a waterfront being developed
+                        along the banks of Sabarmati river in
+                        Ahmedabad, India. Proposed in the 1960s, the
+                        construction began in 2005..</p>
+
+                    <p>Since 2012, the waterfront is gradually opened to public
+                        as and when facilities are constructed and various
+                        facilities are actively under construction. The major
+                        objectives of project are environment
+                        improvement, social infrastructure and sustainable
+                        development.</p>
+
+                    <h4>Geography</h4>
+                    <p>The Sabarmati river is a monsoon-fed river which has a
+                        total catchment area of 21,674 square
+                        kilometres (8,368 sq mi). The Dharoi Dam constructed in
+                        1976 upstream of Ahmedabad controls
+                        water and protects from flooding while Vasna Barrage
+                        constructed in 1976 downstream retains
+                        water in the river along the city banks and diverts it
+                        through Fatehwadi canal for irrigation.</p>
+                    <p>The Narmada Canal, which crosses Sabarmati a few
+                        kilometres upstream from the city, is part of a
+                        larger canal network of Sardar Sarovar Dam. The canal
+                        can feed excess water to the river and
+                        maintains the level of water in the river which is
+                        retained through Vasna Barrage.</p>
+
+                    <h4>History</h4>
+                    <p>The first proposal for developing the riverfront was
+                        presented in 1961 by the prominent citizens
+                        of the city. French architect Bernard Kohn proposed an
+                        ecological valley in Sabarmati basin
+                        stretched from Dharoi Dam to Gulf of Cambay in the
+                        1960s.</p>
+
+                    <p>In 1964, he proposed an Integrated Planning and
+                        Development of Sabarmati Riverfront by reclaiming 30
+                        hectares (74 acres) of land. The project was considered
+                        feasible in 1966 by the Government of Gujarat. Later he
+                        distanced himself from the project citing the difference
+                        between his proposal and the project being
+                        implemented.</p>
+
+                    <p>In 1976, the Riverfront Development Group proposed an
+                        incremental approach for
+                        the construction. In 1992, the National River
+                        Conservation Plan proposed construction of sewers
+                        and pumping stations to reduce water pollution.</p>
+                    <p>The Ahmedabad Municipal Corporation (AMC) set up the
+                        Sabarmati Riverfront Development
+                        Corporation Ltd (SRFDCL), a special purpose vehicle, in
+                        May 1997 funded by the Government of
+                        India with a seed capital of ₹1 crore (US$130,000) for
+                        the riverfront development.</p>
+
+                    <p>Environmental Planning Collaborative (EPC) led by Bimal
+                        Patel prepared the feasibility report in 1998. Initially
+                        the proposal was to construct the riverfront to cover a
+                        stretch of 10.4 kilometres (6.5 mi) stretch from Subhash
+                        bridge to Vasna barrage and to reclaim 162 hectares (400
+                        acres) of the riverbed.</p>
+
+                    <p>In 2003, the project extended to cover an 11.25
+                        kilometres (6.99 mi) stretch and reclamation of 202.79
+                        hectares (501.1 acres) and was put on fast track. The
+                        project estimated to cost ₹1,200 crore
+                        (US$150 million) which was to be recovered by selling of
+                        a part of reclaimed land for commercial
+                        and residential purpose.</p>
+                    <p>Bimal Patel-led HCP Design, Planning and Management Pvt.
+                        Ltd, Ahmedabad was roped in as the main architect of the
+                        project. The project encountered several delays due to
+                        concerns regarding water level, flooding, rehabilitation
+                        of displaced slum dwellers and the opposition from the
+                        activists involved with slum rehabilitation.</p>
+                    <p>The construction began in 2005. The heavy engineering,
+                        land reclamation and sewage system was
+                        completed at the cost of ₹900 crore (US$110
+                        million).</p>
+                    <p>The 11.5 kilometres (7.1 mi) long lower promenades on
+                        both banks are completed and some of its section were
+                        opened to the public on 15 August 2012. It was
+                        inaugurated by then state Chief Minister Narendra
+                        Modi.</p>
+                    <p>The waterfront is gradually opened to public as and when
+                        facilities are finished. Various facilities are actively
+                        under construction since then. Total ₹1,152 crore
+                        (US$140 million) were spent on the project by 2014.</p>
+                    <p>By November 2019, the ₹1,400 crore (US$180 million) were
+                        spent. The Chinese leader, Xi Jinping and his wife Peng
+                        Liyuan visited Sabarmati riverfront with prime minister
+                        of India Narendra Modi on 17 September, 2014.</p>
+
+                    <h4>Culture</h4>
+                    <p>The riverfront is featured in several Gujarati as well as
+                        Bollywood films. It hosts several annual events like
+                        Sabarmati Marathon, Sabarmati Cyclothon, flower shows,
+                        International Kite Festival and airshows. Its continuous
+                        promenade attracts runners and fitness enthusiasts. It
+                        also hosts trade shows, exhibitions and private wedding
+                        events.</p>
+
+                    <h4>Riverfront</h4>
+                    <p>The average width of the river channel was 382 metres
+                        (1,253 ft) and the narrowest cross-section
+                        330 metres (1,080 ft). It is uniformly narrowed to 263
+                        metres (863 ft) without affecting its flood
+                        carrying capacity and the riverbed land is reclaimed on
+                        the both east and west banks to construct
+                        11.25 kilometres (6.99 mi) long riverfront. It can hold
+                        470,000 cu ft/s (13,000 m3/s) without
+                        spillage</p>
+
+                    <p>The total of 202.79 hectares (501.1 acres) of land is
+                        reclaimed. The reclaimed land is used for public as well
+                        as private development. More than 85% of the reclaimed
+                        land proposed be used for public infrastructure,
+                        recreational parks, sports facilities and gardens while
+                        nearly 14% proposed be used for commercial and
+                        residential purpose.</p>
+
+                    <h3>In Sabarmati Riverfront Who Best thing Watch to See</h3>
+                    <p>1.Nehru Bridge</p>
+                    <p>2.Sabarmati Riverfront</p>
+                    <p>3.Sabarmati Riverfront Walkway</p>
+                    <p>4.Sabarmati Riverfront Park</p>
+                    <p>5.Sabarmati Riverfront Garden</p>
+                    <p>6.Sabarmati Riverfront Museum</p>
+                    <p>7.Sabarmati Riverfront Statue</p>
+                    <p>8.Sabarmati Riverfront Fountain</p>
+                    <p>9.Sabarmati Riverfront Light</p>
+                    <p>10.Sabarmati Riverfront Art</p>
+
+                    
+
+                    <h3>Additional Info:</h3>
+                    <p>The information of Sabarmati Riverfront is where is this
+                        place? how many days open and when it is open and colse.
+
+                    </p>
+                    <table>
+                        <tr>
+                            <th>Address</th>
+                            <th>Timing</th>
+                            <th>Days</th>
+                            <th>Entry Price</th>
+                        </tr>
+                        <tr>
+                            <td>Sabarmati Riverfront Ahmedabad Address:
+                                Sabarmati Riverfront Walkway W, Rabarivas,
+                                Usmanpura, Ahmedabad, Gujarat, 380013, India
+
+                            </td>
+                            <td>8:00 AM - 9:00 PM</td>
+                            <td>Sunday - Saturday</td>
+                            <td>70<i class='bx bx-rupee'></i>100<i class='bx bx-rupee'></i></td>
+                        </tr>
+                    </table>
+
+                    <h3>Contact Number</h3>
+                    <p class="num">+91 7927550403</p>
+                </section>
+                <!-- End of Overview Section -->
+
+                <!-- Start of Location and Gallery Section -->
+                <section class="location-gallery-container">
+                    <!-- Location Section -->
+                    <div class="location">
+                        <h2>Location</h2>
+                        <p>The world is a book, and those who do not travel read
+                            only a page.</p>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d30927.302575601436!2d72.57407440837257!3d23.028163728433007!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e845178057517%3A0xf37fb13e213a6359!2sSabarmati%20Riverfront%2C%20Nehru%20Bridge!5e1!3m2!1sen!2sus!4v1741727261945!5m2!1sen!2sus"
+                            width="100%" height="450" style="border:0;"
+                            allowfullscreen loading="lazy"></iframe>
+                    </div>
+
+                    <!-- Gallery Section -->
+                    <div class="gallery">
+                        <h2>Gallery</h2>
+                        <p>A photograph is a secret about a secret. The more it
+                            tells you, the less you know.</p> <br>
+                        <div class="gallery-images">
+                            <img
+                                src="{% static 'images/TourDetail/riverfront1.jpg' %}"
+                                alt="Gallery Image 1">
+                        </div>
+                    </div>
+                </section>
+                <!-- End of Location and Gallery Section -->
+
+                <!-- Add this after the thumbnail-gallery section and before the overview section -->
+                <section class="guide-selection">
+                    <h2>Choose Your Guide For this Monument</h2>
+
+                    <div class="guide-carousel">
+                        <button class="prev-guide">&#10094;</button>
+
+                        <div class="guides-container">
+                            <div class="guide-profile active">
+                                <div class="guide-image">
+                                    <img
+                                        src="{% static 'images/guides/g3.jpg' %}"
+                                        alt="Guide - Patel Dhyan">
+                                </div>
+                                <h3>Patel Dhyan</h3>
+                                <p class="guide-price">Price : 300<i class='bx bx-rupee'></i></p>
+
+                                {% if user.is_authenticated %}
+                                <a
+                                    href="{% url 'bookguide' guide_name='Patel Dhyan' guide_place='Sabarmati Riverfront' %}"
+                                    class="book-guide"> Book Guide </a>
+                                {% else %}
+                                <br> <p class="booking-info">Login to book a
+                                    guide <a href="{% url 'login' %}"
+                                        class="login-link">Login Now</a></p>
+                                {% endif %}
+                            </div>
+
+                            <div class="guide-profile">
+                                <div class="guide-image">
+                                    <img
+                                        src="{% static 'images/guides/g4.jpg' %}"
+                                        alt="Guide - Shrey Patel">
+                                </div>
+                                <h3>Shreya Patel</h3>
+                                <p class="guide-price">Price : 400<i class='bx bx-rupee'></i></p>
+
+                                {% if user.is_authenticated %}
+                                <a
+                                    href="{% url 'bookguide' guide_name='Shrey Patel' guide_place='Sabarmati Riverfront' %}"
+                                    class="book-guide"> Book Guide </a>
+                                {% else %}
+                                <p class="booking-info">Login to book a guide <a
+                                        href="{% url 'login' %}"
+                                        class="login-link">Login Now</a></p>
+                                {% endif %}
+                            </div>
+
+                            <div class="guide-profile">
+                                <div class="guide-image">
+                                    <img
+                                        src="{% static 'images/guides/g1.jpg' %}"
+                                        alt="Guide - Darshan Raval">
+                                </div>
+                                <h3>Darshan Raval</h3>
+                                <p class="guide-price">Price : 300<i class='bx bx-rupee'></i></p>
+
+                                {% if user.is_authenticated %}
+                                <a
+                                    href="{% url 'bookguide' guide_name='Darshan Raval' guide_place='Sabarmati Riverfront' %}"
+                                    class="book-guide"> Book Guide </a>
+                                {% else %}
+                                <p class="booking-info">Login to book a guide <a
+                                        href="{% url 'login' %}"
+                                        class="login-link">Login Now</a></p>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <button class="next-guide">&#10095;</button>
+                    </div>
+                </section>
+                <!-- End of Guide Selection -->
+
+
+                <!-- Add this after the overview section and before the location-gallery-container -->
+            <h4 class="r">Enter Rating for places </h4>
+            <section class="ratings-reviews">
+                <form method="POST">
+                    {% csrf_token %}
+                    <label for="rating-select">Select a rating Place:</label>
+                    <select id="rating-select" name="place_name">
+                        <option value="adalaj-stepwell" data-rating="excellent">Adalaj Stepwell</option>
+                        <option value="rani-ki-vav" data-rating="good">Rani Ki Vav</option>
+                        <option value="vintage-car-museum" data-rating="average">The Vintage Car Museum</option>
+                        <option value="sabarmati-aashram" data-rating="poor">Sabarmati Aashram</option>
+                        <option value="hutheesing-jain-temple" data-rating="excellent">Hutheesing Jain Temple</option>
+                        <option value="jama-masjid" data-rating="good">Jama Masjid</option>
+                        <option value="jhulta-minar" data-rating="average">Jhulta Minar</option>
+                        <option value="kankaria-lake" data-rating="poor">Kankaria Lake</option>
+                        <option value="lal-darvaja" data-rating="excellent">Lal Darvaja</option>
+                        <option value="sabarmati-riverfront" data-rating="good">Sabarmati Riverfront</option>
+                    </select>
+                    
+            
+                    <label for="rate">Enter a reating(1-10):</label>
+                    <input type="number" id="rateing" name="rateing" min="1" max="10" placeholder="Enter a number" required>
+            
+                    <button type="submit">Submit</button>
+                </form>
+            </section>
+            <!--End Add this after the overview section and before the location-gallery-container -->
+
+            </main>
+        </div>
+
+        <!-- Trending Tour Section -->
+        <div class="trending-tour">
+            <img src="{% static 'images/places/Heritage-Walk-Thumbnail1.jpg' %}"
+                alt="Trending Tour" class="trending-image">
+            <div class="trending-content">
+                <h2>Discover the beauty and</h2>
+                <h2> culture of your destination</h2> <br>
+                <a href="{% url 'tour' %}" class="btn btn-primary">Trending
+                    Tour</a>
+            </div>
+        </div>
+        <!-- End Trending Tour Section -->
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        // Get all elements
+        const mainImage = document.querySelector('.image-gallery img');
+        const thumbnails = document.querySelectorAll('.thumbnail-gallery img');
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+        
+        // Initialize current image index
+        let currentIndex = 0;
+        const totalImages = thumbnails.length;
+        
+        // Load all image sources into an array for easy access
+        const imageSources = Array.from(thumbnails).map(thumb => thumb.src);
+        
+        // Function to update the main image
+        function updateMainImage(index) {
+            // Make sure index is within bounds
+            if (index < 0) index = totalImages - 1;
+            if (index >= totalImages) index = 0;
+            
+            // Update current index
+            currentIndex = index;
+            
+            // Set the main image source to the selected thumbnail source
+            mainImage.src = imageSources[currentIndex];
+            
+            // Highlight the current thumbnail
+            thumbnails.forEach((thumb, i) => {
+                if (i === currentIndex) {
+                    thumb.style.borderColor = '#a57e3b';
+                    thumb.style.transform = 'scale(1.15)';
+                } else {
+                    thumb.style.borderColor = '#ccc';
+                    thumb.style.transform = 'scale(1)';
+                }
+            });
+        }
+        
+        // Set up click event for previous button
+        prevButton.addEventListener('click', function() {
+            updateMainImage(currentIndex - 1);
+        });
+        
+        // Set up click event for next button
+        nextButton.addEventListener('click', function() {
+            updateMainImage(currentIndex + 1);
+        });
+        
+        // Set up click events for thumbnails
+        thumbnails.forEach((thumbnail, index) => {
+            thumbnail.addEventListener('click', function() {
+                updateMainImage(index);
+            });
+        });
+        
+        // Initialize the gallery with the first image
+        updateMainImage(0);
+    });
+    </script>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const prevButton = document.querySelector('.prev-guide');
+            const nextButton = document.querySelector('.next-guide');
+            const guides = document.querySelectorAll('.guide-profile');
+            let currentGuideIndex = 0;
+            
+            // Hide all guides except the first one
+            guides.forEach((guide, index) => {
+                if (index !== 0) {
+                    guide.classList.remove('active');
+                }
+            });
+            
+            prevButton.addEventListener('click', function() {
+                guides[currentGuideIndex].classList.remove('active');
+                currentGuideIndex = (currentGuideIndex - 1 + guides.length) % guides.length;
+                guides[currentGuideIndex].classList.add('active');
+            });
+            
+            nextButton.addEventListener('click', function() {
+                guides[currentGuideIndex].classList.remove('active');
+                currentGuideIndex = (currentGuideIndex + 1) % guides.length;
+                guides[currentGuideIndex].classList.add('active');
+            });
+        });
+        </script>
+
+    </body>
+</html>
+
+{% endblock %}

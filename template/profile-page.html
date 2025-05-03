@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/profilepage.css' %}">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Welcome back, <strong>{{ user.username }}</strong>!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <div class="row">
+            <!-- Profile Card -->
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Profile Information</h5>
+                    </div>
+                    <div class="card-body text-center">
+                        <img src="{% static 'images/icone/i1.png' %}" alt="Profile Picture" class="rounded-circle img-fluid" style="width: 120px;">
+                        <h3 class="mt-2">{{ user.username }}</h3>
+                        <p class="text-muted">Member since: {{ user.date_joined|date:"F d, Y" }}</p>
+                        <p>Email: {{ user.email }}</p>
+                        <p>Last Login: {{ user.last_login }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking Details -->
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Your Bookings</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Guide</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Member</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if bookings %}
+                                    {% for booking in bookings %}
+                                    <tr>
+                                        <td>{{ booking.guide_name }}</td>
+                                        <td>{{ booking.date }}</td>
+                                        <td>{{ booking.start_time }} - {{ booking.end_time }}</td>
+                                        <td>{{ booking.member }}</td>
+                                        <td>₹{{ booking.price }}</td>
+                                        <td>
+                                            {% if booking.status == "Confirmed" %}
+                                                <span class="badge bg-success">Confirmed</span>
+                                            {% else %}
+                                                <span class="badge bg-danger">Cancelled</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary">Details</button>
+                                            {% if booking.status == "Confirmed" %}
+                                                <button class="btn btn-sm btn-danger">Cancel</button>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan="7" class="text-center">No bookings found.</td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Account Settings -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Account Settings</h5>
+                    </div>
+                    <div class="card-body text-center">
+                        <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+{% endblock %}

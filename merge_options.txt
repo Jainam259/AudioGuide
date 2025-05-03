@@ -1,0 +1,38 @@
+Merging Audio
+  Branch 0006_booking_review
+    + Create model contact_us
+    ~ Alter field cpass on register_view
+    ~ Alter field email on register_view
+    ~ Alter field password on register_view
+    + Create model Booking
+    + Create model Review
+  Branch 0022_booking
+    + Create model contact_us
+    ~ Alter field phone on contact_us
+    + Create model Place
+    + Create model audio
+    - Delete model Place
+    + Create model City
+    - Delete model audio
+    - Delete model City
+    + Create model Audio
+    + Create model City
+    + Create model monument
+    + Create model monument_photos
+    + Create model Booking
+    - Delete model Booking
+    - Remove field monument from monument_photos
+    - Delete model monument
+    - Delete model monument_photos
+    + Create model Booking
+    ~ Rename model Booking to Booking_data
+    + Create model Booking
+    - Delete model Booking_data
+    - Delete model Booking
+    + Create model Booking
+    - Delete model Booking
+    + Create model Booking
+
+Merging will only work if the operations printed above do not conflict
+with each other (working on different fields or models)
+Should these migration branches be merged? [y/N] 
