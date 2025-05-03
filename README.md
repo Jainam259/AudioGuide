@@ -3,7 +3,7 @@
 AudioGuide is a Django-based web application that serves as an audio guide platform for historical or cultural sites. It allows users to listen to audio descriptions in multiple languages through a web interface.
 
 🌟 Features
-Audio playback of guide content (e.g., in English, Hindi, Gujarati).
+Audio playback of guide content (e.g., in English, Hindi, Gujarati). \n
 Web-based interface for accessing audio guides.
 Organized and easy-to-navigate structure with Django backend.
 Responsive audio player UI (custom CSS/JS included).
