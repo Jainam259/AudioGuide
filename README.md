@@ -38,4 +38,5 @@ index.html, Audio1.html: Web pages for guide content.
 ![Screenshot 2025-05-03 141041](https://github.com/user-attachments/assets/2c08d4a9-406f-4583-863d-378fbff1c6c6)![Screenshot 2025-05-03 ![Screenshot 2025-05-03 141126](https://github.com/user-attachments/assets/34edcbf7-c5db-4b8a-81bf-166fd0e40f0e)
 141108](https://github.com/user-attachments/assets/77d830e5-1652-4b9e-b462-3fefe612ffda)
 
+![Screenshot 2025-05-03 141126](https://github.com/user-attachments/assets/050ce2f2-7081-486b-a4e9-5b8cf0f063f4)
 
