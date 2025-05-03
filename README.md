@@ -40,3 +40,31 @@ index.html, Audio1.html: Web pages for guide content.
 
 ![Screenshot 2025-05-03 141126](https://github.com/user-attachments/assets/050ce2f2-7081-486b-a4e9-5b8cf0f063f4)
 
+
+![Screenshot 2025-05-03 141209](https://github.com/user-attachments/assets/8a094955-bcde-48c3-b0d2-384c57c70e28)
+
+![Screenshot 2025-05-03 141251](https://github.com/user-attachments/assets/b4fbcf80-1852-4d49-bd2b-26a245fda9b4)
+
+![Screenshot 2025-05-03 141316](https://github.com/user-attachments/assets/a9d424c1-b185-4732-92a6-57f7c06798da)
+
+
+![Screenshot 2025-05-03 141417](https://github.com/user-attachments/assets/dfc71c23-f044-45b5-92c1-a6c3de2ddbe7)
+
+![Screenshot 2025-05-03 141529](https://github.com/user-attachments/assets/845f7b7b-e627-4d5b-9578-6851e14aa29b)
+
+![Screenshot 2025-05-03 141644](https://github.com/user-attachments/assets/ec942fef-5344-43e9-ad72-30acfe8e4b8e)
+
+![Screenshot 2025-05-03 141726](https://github.com/user-attachments/assets/92572fad-df5f-49d7-98e9-350130d829e8)
+
+![Screenshot 2025-05-03 141748](https://github.com/user-attachments/assets/9ce684ca-7d50-4677-a1e9-757e76238a5f)
+
+![Screenshot 2025-05-03 141814](https://github.com/user-attachments/assets/ec96f661-5284-45ad-b0e8-19d2e520eab9)
+
+
+
+
+
+
+
+
+
