@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Player with Volume Control</title>
+    <link rel="stylesheet" href="audio-player.css">
+</head>
+<body>
+    <div class="audio-player">
+        <h2>Audio Player</h2>
+        <audio id="audio-element" controls>
+            <!-- Use a real audio file that exists in your project -->
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        
+        <div class="controls">
+            <button id="play-pause">Play</button>
+            <button id="volume-toggle">Volume: High</button>
+            <span id="volume-indicator">Current Volume: 100%</span>
+        </div>
+    </div>
+
+    <script src="audio-player.js"></script>
+</body>
+</html> 

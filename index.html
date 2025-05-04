@@ -1,0 +1,100 @@
+<div class="cities-container">
+  <h2>Available Cities</h2>
+  
+  <!-- Add form for adding new cities -->
+  <div class="add-city-form">
+    <h3>Add New City</h3>
+    <form id="cityForm">
+      <div class="form-group">
+        <label for="cityName">City Name:</label>
+        <input type="text" id="cityName" required>
+      </div>
+      <div class="form-group">
+        <label for="cityCountry">Country:</label>
+        <input type="text" id="cityCountry" required>
+      </div>
+      <div class="form-group">
+        <label for="cityPopulation">Population:</label>
+        <input type="number" id="cityPopulation">
+      </div>
+      <div class="form-group">
+        <label for="cityDescription">Description:</label>
+        <textarea id="cityDescription"></textarea>
+      </div>
+      <button type="submit">Add City</button>
+    </form>
+  </div>
+  
+  <ul id="citiesList">
+    <!-- Cities will be dynamically inserted here -->
+  </ul>
+</div>
+
+<script>
+  // Function to fetch and display cities
+  async function loadCities() {
+    try {
+      const response = await fetch('/api/cities');
+      const cities = await response.json();
+      
+      const citiesList = document.getElementById('citiesList');
+      citiesList.innerHTML = ''; // Clear existing list
+      
+      cities.forEach(city => {
+        const listItem = document.createElement('li');
+        listItem.className = 'city-item';
+        listItem.innerHTML = `
+          <h3>${city.name}, ${city.country}</h3>
+          <p>${city.description || 'No description available'}</p>
+          <span class="population">Population: ${city.population.toLocaleString()}</span>
+        `;
+        citiesList.appendChild(listItem);
+      });
+    } catch (error) {
+      console.error('Failed to load cities:', error);
+    }
+  }
+  
+  // Add function to handle form submission
+  async function handleFormSubmit(event) {
+    event.preventDefault();
+    
+    try {
+      const newCity = {
+        name: document.getElementById('cityName').value,
+        country: document.getElementById('cityCountry').value,
+        population: document.getElementById('cityPopulation').value || 0,
+        description: document.getElementById('cityDescription').value || ''
+      };
+      
+      const response = await fetch('/api/cities', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newCity)
+      });
+      
+      if (response.ok) {
+        // Reset the form
+        document.getElementById('cityForm').reset();
+        // Reload the cities to show the new one
+        loadCities();
+        alert('City added successfully!');
+      } else {
+        const error = await response.json();
+        alert(`Failed to add city: ${error.message}`);
+      }
+    } catch (error) {
+      console.error('Error adding city:', error);
+      alert('Failed to add city. Check the console for details.');
+    }
+  }
+  
+  // Load cities when the page loads
+  document.addEventListener('DOMContentLoaded', () => {
+    loadCities();
+    // Add event listener to the form
+    document.getElementById('cityForm').addEventListener('submit', handleFormSubmit);
+  });
+</script> 

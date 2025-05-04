@@ -1,0 +1,1 @@
+ALTER TABLE Audio_booking ADD COLUMN phone_number varchar(15); 
