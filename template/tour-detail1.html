@@ -1,0 +1,387 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Guide UI</title>
+    <link rel="stylesheet" href="{% static 'css/tour-detail1.css' %}">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'css/boxicons.min.css' %}">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="hero">
+        <img src="{% static 'images/background/akshar.jpg' %}" alt="Tour Place">
+        <div class="overlay">
+            <h1>Tour Detail</h1>
+        </div>
+    </header>
+    <!--Ended Header Section -->
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+      <ul>
+          <li><a href="{% url 'index' %}">Home</a></li>
+          <li>></li>
+          <li class="current">Tour Detail</li>
+      </ul>
+    </nav>
+    <!-- End Breadcrumb -->
+
+    <!--Start of Image and Places -->
+    <div class="container">
+        <aside class="sidebar">
+            <button class="search-btn">Search Places</button>
+            <div class="categories">
+                <h3>Cities</h3>
+                <ul>
+                    <li> <a href="{% url 'ahmedabad' %}"> Ahmedabad </a> </li>
+                    <li> <a href="#"> Surat </a> </li>
+                    <li> <a href="#"> Amreli </a> </li>
+                    <li> <a href="#"> Veraval </a> </li>
+                    <li> <a href="#"> Bhavnagar </a> </li>
+                    <li> <a href="#"> Patan </a> </li>
+                </ul>
+                <h3>Nearby Places</h3>
+                <ul>
+                    <li> <a href="#"> Rani Ki Vav </a> </li>
+                    <li> <a href="#"> The Vintage Car Museum </a> </li>
+                    <li> <a href="#"> Sabarmati Ashram </a> </li>
+                    <li> <a href="#"> Hutheesing Jain Temple </a> </li>
+                    <li> <a href="#"> Jama Masjid </a> </li>
+                    <li> <a href="#"> Jhulta Minar </a> </li>
+                    <li> <a href="#"> Kankaria Lake </a> </li>
+                    <li> <a href="#"> Lal Darwaza </a> </li>
+                    <li> <a href="#"> Sabarmati Riverfront </a> </li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="place-header">
+                <div class="place-info">
+                    <div>
+                        Average Rating: {{ avg_rating }} / 10 <span>
+                            {% for _ in ""|ljust:avg_rating %}
+                                ⭐
+                            {% endfor %}
+                        </span><br>
+                       Total Ratings: {{ total_ratings }}                    
+                    </div> 
+                    
+                    <h1>Adalaj Stepwell</h1>
+                    <p><span>📍</span> Ahmedabad, Gujarat</p> <br>
+                    <p><span>📞</span> 6354592403</p>
+                </div>
+                <div class="audio-section">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'Audio1' %}" class="audio-btn">Listen Audio</a>
+                    {% else %}
+                        <a href="#" class="audio-btn">Login To Listen Audio</a>
+                    {% endif %}
+                    <br>
+                    <span class="category">Historical</span>
+                </div>
+            </header>
+            
+            <section class="image-gallery">
+                <button class="prev">&#10094;</button>
+                <img src="{% static 'images/2.jpeg' %}" alt="Adalaj Stepwell">
+                <button class="next">&#10095;</button>
+            </section>
+            <div class="thumbnail-gallery">
+                <img src="{% static 'images/TourDetail/Adalaj1.jpg' %}" alt="Thumbnail 1">
+                <img src="{% static 'images/TourDetail/Adalaj2.png' %}" alt="Thumbnail 2">
+                <img src="{% static 'images/TourDetail/Adalaj3.jpg' %}" alt="Thumbnail 3">
+                <img src="{% static 'images/TourDetail/Adalaj4.jpg' %}" alt="Thumbnail 4">
+            </div>
+            <!--End of Image and Places -->
+
+
+            <!-- Start of Overview Section -->
+            <section class="overview">
+                <h2>Overview</h2>
+                <h3>About the Place:</h3> <br>
+                <h4>Adalaj Stepwell</h4>
+                <p>Adalaj Stepwell or Rudabai Stepwell is a stepwell located in the village of 
+                    Adalaj, close to Gandhinagar city in Gandhinagar district in the Indian state 
+                    of Gujarat, and considered a fine example of Indian architecture work. It was 
+                    built in 1498 in the memory of Rana Veer Singh (the Vaghela dynasty of Dandal 
+                    Des) by his wife, Queen Rudadevi.</p>
+
+                <h4>History</h4>
+                <p>The Adalaj stepwell or ‘Vav’, as it is called in Gujarat, is intricately carved 
+                    and is five stories deep. It was built in 1498. An inscription in Sanskrit 
+                    establishes the history of the Adalaj stepwell found on a marble slab positioned 
+                    in a recess on the first floor, from the eastern entry to the well. Its 
+                    construction was started by Rana Veer Singh of the Vaghela dynasty of Dandal 
+                    Desh. But he was killed in a war, whereafter the Muslim king Mahmud Begada of a 
+                    neighboring state built it in Indo-Islamic architectural style, in 1499.</p>
+
+                <p>The Sanskrit inscription in the stepwell describes:</p>
+                <blockquote>
+                    “Samvat 1555 (1498 AD), month of Magha, Mahmud Padshah being king.<br>
+                    “Salutation to Vinayaka (Ganesha) to whose race belonged King Mokala, chief of the country of Dandahl. From him was born Kama, Mahpa, and Virsinh and Naisha were the sons of Mahpa. Virsinh’s queen, whose name is Rooda, has constructed this well.<br>
+                    “It is dedicated at this time - when the sun is in the north, the month is Magha, the bright half (Shukla Patsha), the 5th day, the day of the week. Wednesday, the lunar mansion – Uttara, Kanara-Bava, the yoga – Sidahi.”
+                </blockquote>
+                <p>Then follows a glowing description of the well, after which the queen, or 
+                    rather lady of the chief, is praised in a few verses; the expense is stated 
+                    at 5.00.111 tankes or over five lakhs, and the whole ends with a repetition 
+                    of the date as given above.
+                </p>
+
+                <p>The cultural and architectural depiction in the deep wells at various levels are
+                    a tribute to the history of step wells, built initially by Hindus and subsequently 
+                    ornamented and blended with Islamic architecture during the Muslim rule.</p>
+                
+                <h3>In Adalaj Stepwell Watch to See</h3>
+                    <p>1.Architectural Marvel</p>
+                    <p>2.Five Levels</p>
+                    <p>3.Intricate Carvings</p>
+                    <p>4.Cool Breeze</p>
+                    <p>5.Well-Preserved</p>
+                    <p>6.Tranquil Atmosphere</p>
+
+                <h3>Additional Info:</h3>
+                <p>The information of Adalaj Stepwell is where is this place? how many days open and when it is open and close.</p>
+                <table>
+                    <tr>
+                        <th>Address</th>
+                        <th>Timing</th>
+                        <th>Days</th>
+                        <th>Entry Price</th>
+                    </tr>
+                    <tr>
+                        <td>Adalaj Rd, Adalaj, Gujarat 382421</td>
+                        <td>8:00 AM - 6:00 PM</td>
+                        <td>Sunday - Saturday</td>
+                        <td>300<i class='bx bx-rupee'></i></td>
+                    </tr>
+                </table>
+
+                <h3>Contact Number</h3>
+                <p class="num">+91 6354592403</p>
+            </section>
+            <!-- End of Overview Section -->
+
+
+            <!-- Start of Location and Gallery Section -->
+            <section class="location-gallery-container">
+             <!-- Location Section -->
+                <div class="location">
+                    <h2>Location</h2>
+                    <p>The world is a book, and those who do not travel read only a page.</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d507037.6863252763!2d72.41725073352977!3d23.012185003731652!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395c29dab0c5bf89%3A0xdb1dddc4bdbd398f!2sAdalaj%20Stepwell!5e0!3m2!1sen!2sin!4v1740666646298!5m2!1sen!2sin" 
+                     width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+
+                <!-- Gallery Section -->
+                <div class="gallery">
+                    <h2>Gallery</h2>
+                    <p>A photograph is a secret about a secret. The more it tells you, the less you know.</p> <br>
+                    <div class="gallery-images">
+                        <img src="{% static 'images/TourDetail/Adalaj1.jpg' %}" alt="Gallery Image 1">
+                    </div>
+                </div>
+            </section>
+            <!-- End of Location and Gallery Section -->
+
+
+
+            <!-- Add this after the thumbnail-gallery section and before the overview section -->
+            <section class="guide-selection">
+                <h2>Choose Your Guide For this Monument</h2>
+            
+                <div class="guide-carousel">
+                    <button class="prev-guide">&#10094;</button>
+            
+                    <div class="guides-container">
+                        <div class="guide-profile active">
+                            <div class="guide-image">
+                                <img src="{% static 'images/guides/g3.jpg' %}" alt="Guide - Patel Dhyan">
+                            </div>
+                            <h3 >Patel Dhyan</h3>
+                            <p class="guide-price">Price : 300<i class='bx bx-rupee'></i></p>
+                            
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'bookguide' guide_name='Patel Dhyan' guide_place='Adalaj Stepwell' %}" class="book-guide"> Book Guide </a> 
+                            {% else %}
+                               <br> <p class="booking-info">Login to book a guide <a href="{% url 'login' %}" class="login-link">Login Now</a></p>
+                            {% endif %}
+                        </div>
+            
+                        <div class="guide-profile">
+                            <div class="guide-image">
+                                <img src="{% static 'images/guides/g4.jpg' %}" alt="Guide - Shreya Patel">
+                            </div>
+                            <h3>Shreya Patel</h3>
+                            <p class="guide-price">Price : 400<i class='bx bx-rupee'></i> </p>
+            
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'bookguide' guide_name='Shreya Patel' guide_place='Adalaj Stepwell' %}" class="book-guide"> Book Guide </a>
+                            {% else %}
+                                <p class="booking-info">Login to book a guide <a href="{% url 'login' %}" class="login-link">Login Now</a></p>
+                            {% endif %}
+                        </div>
+            
+                        <div class="guide-profile">
+                            <div class="guide-image">
+                                <img src="{% static 'images/guides/g1.jpg' %}" alt="Guide - Darshan Raval">
+                            </div>
+                            <h3>Darshan Raval</h3>
+                            <p class="guide-price">Price : 300<i class='bx bx-rupee'></i></p>
+            
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'bookguide' guide_name='Darshan Raval' guide_place='Adalaj Stepwell' %}" class="book-guide"> Book Guide </a>
+                            {% else %}
+                                <p class="booking-info">Login to book a guide <a href="{% url 'login' %}" class="login-link">Login Now</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
+            
+                    <button class="next-guide">&#10095;</button>
+                </div>
+            </section>
+            <!-- End of Guide Selection -->
+
+
+            <!-- Add this after the overview section and before the location-gallery-container -->
+            <h4 class="r">Enter Rating for places </h4>
+            <section class="ratings-reviews">
+                <form method="POST">
+                    {% csrf_token %}
+                    <label for="rating-select">Select a rating Place:</label>
+                    <select id="rating-select" name="place_name">
+                        <option value="adalaj-stepwell" data-rating="excellent">Adalaj Stepwell</option>
+                        <option value="rani-ki-vav" data-rating="good">Rani Ki Vav</option>
+                        <option value="vintage-car-museum" data-rating="average">The Vintage Car Museum</option>
+                        <option value="sabarmati-aashram" data-rating="poor">Sabarmati Aashram</option>
+                        <option value="hutheesing-jain-temple" data-rating="excellent">Hutheesing Jain Temple</option>
+                        <option value="jama-masjid" data-rating="good">Jama Masjid</option>
+                        <option value="jhulta-minar" data-rating="average">Jhulta Minar</option>
+                        <option value="kankaria-lake" data-rating="poor">Kankaria Lake</option>
+                        <option value="lal-darvaja" data-rating="excellent">Lal Darvaja</option>
+                        <option value="sabarmati-riverfront" data-rating="good">Sabarmati Riverfront</option>
+                    </select>
+                    
+            
+                    <label for="rate">Enter a reating(1-10):</label>
+                    <input type="number" id="rateing" name="rateing" min="1" max="10" placeholder="Enter a number" required>
+            
+                    <button type="submit">Submit</button>
+                </form>
+            </section>
+            <!--End Add this after the overview section and before the location-gallery-container -->
+
+        </main>
+    </div>
+
+    <!-- Trending Tour Section -->
+    <div class="trending-tour">
+        <img src="{% static 'images/places/Heritage-Walk-Thumbnail1.jpg' %}" alt="Trending Tour" class="trending-image">
+        <div class="trending-content">
+            <h2>Discover the beauty and</h2>
+            <h2> culture of your destination</h2> <br>
+        <a href="{% url 'tour' %}" class="btn btn-primary">Trending Tour</a>
+    </div>
+    </div>
+    <!-- End Trending Tour Section -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        // Get all elements
+        const mainImage = document.querySelector('.image-gallery img');
+        const thumbnails = document.querySelectorAll('.thumbnail-gallery img');
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+        
+        // Initialize current image index
+        let currentIndex = 0;
+        const totalImages = thumbnails.length;
+        
+        // Load all image sources into an array for easy access
+        const imageSources = Array.from(thumbnails).map(thumb => thumb.src);
+        
+        // Function to update the main image
+        function updateMainImage(index) {
+            // Make sure index is within bounds
+            if (index < 0) index = totalImages - 1;
+            if (index >= totalImages) index = 0;
+            
+            // Update current index
+            currentIndex = index;
+            
+            // Set the main image source to the selected thumbnail source
+            mainImage.src = imageSources[currentIndex];
+            
+            // Highlight the current thumbnail
+            thumbnails.forEach((thumb, i) => {
+                if (i === currentIndex) {
+                    thumb.style.borderColor = '#a57e3b';
+                    thumb.style.transform = 'scale(1.15)';
+                } else {
+                    thumb.style.borderColor = '#ccc';
+                    thumb.style.transform = 'scale(1)';
+                }
+            });
+        }
+        
+        // Set up click event for previous button
+        prevButton.addEventListener('click', function() {
+            updateMainImage(currentIndex - 1);
+        });
+        
+        // Set up click event for next button
+        nextButton.addEventListener('click', function() {
+            updateMainImage(currentIndex + 1);
+        });
+        
+        // Set up click events for thumbnails
+        thumbnails.forEach((thumbnail, index) => {
+            thumbnail.addEventListener('click', function() {
+                updateMainImage(index);
+            });
+        });
+        
+        // Initialize the gallery with the first image
+        updateMainImage(0);
+    });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const prevButton = document.querySelector('.prev-guide');
+            const nextButton = document.querySelector('.next-guide');
+            const guides = document.querySelectorAll('.guide-profile');
+            let currentGuideIndex = 0;
+            
+            // Hide all guides except the first one
+            guides.forEach((guide, index) => {
+                if (index !== 0) {
+                    guide.classList.remove('active');
+                }
+            });
+            
+            prevButton.addEventListener('click', function() {
+                guides[currentGuideIndex].classList.remove('active');
+                currentGuideIndex = (currentGuideIndex - 1 + guides.length) % guides.length;
+                guides[currentGuideIndex].classList.add('active');
+            });
+            
+            nextButton.addEventListener('click', function() {
+                guides[currentGuideIndex].classList.remove('active');
+                currentGuideIndex = (currentGuideIndex + 1) % guides.length;
+                guides[currentGuideIndex].classList.add('active');
+            });
+        });
+        </script>
+
+</body>
+</html>
+
+{% endblock %}

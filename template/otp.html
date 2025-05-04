@@ -1,0 +1,172 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Your Booking</title>
+    <link rel="stylesheet" href="{% static 'css/otp.css' %}">
+    <style>
+        .verify-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            border: none;
+            font-size: 16px;
+        }
+        .verify-btn:hover {
+            background-color: #45a049;
+        }
+        .booking-details {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .booking-details h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .booking-details p {
+            margin: 5px 0;
+        }
+        .guide-note {
+            background-color: #fff3cd;
+            border-left: 3px solid #ffc107;
+            padding: 8px 12px;
+            margin-top: 10px;
+            color: #856404;
+            border-radius: 0 4px 4px 0;
+        }
+        .alert {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="hero">
+        <img src="{% static 'images/background/8.jpg' %}" alt="Tour Place">
+        <div class="overlay">
+            <h1>Verify Otp</h1>
+        </div>
+      </header>
+    <!--Ended Header Section -->
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li>></li>
+            <li><a href="{% url 'tour' %}">Tour</a></li>
+            <li>></li>
+            <li><a href="{% url 'tour-detail1' %}">Tour Detail</a></li>
+            <li>></li>
+            <li class="current">Verify OTP</li>
+        </ul>
+      </nav>
+      <!-- End Breadcrumb -->
+
+    <div class="verification-container">
+        <h1>Verify Your Booking</h1>
+        
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="booking-details">
+            <h3>Booking Summary</h3>
+            <p><strong>Guide:</strong> {{ request.session.guide_name|default:"Not specified" }}</p>
+            <p><strong>Location:</strong> {{ request.session.guide_place|default:"Not specified" }}</p>
+            <p><strong>Date:</strong> {{ request.session.date|default:request.session.booking_date|default:"Not specified" }}</p>
+            <p><strong>Time:</strong> {{ request.session.start_time|default:request.session.booking_start_time|default:"Not specified" }} - {{ request.session.end_time|default:request.session.booking_end_time|default:"Not specified" }}</p>
+            <p><strong>Visitors:</strong> {{ request.session.member|default:request.session.booking_member|default:"1" }}</p>
+            <p><strong>Price:</strong> ₹{{ request.session.price|default:request.session.booking_price|default:"0" }}</p>
+            <p class="guide-note"><strong>Note:</strong> When you verify your booking, an SMS will be sent to the guide's mobile number with your booking details.</p>
+        </div>
+        
+        {% if show_otp or messages %}
+        <div class="notification" id="notification" style="background-color: #fff3cd; border: 1px solid #ffc107; border-radius: 4px; padding: 15px; margin-bottom: 20px; text-align: center;">
+            <p><strong>Your OTP for booking confirmation:</strong></p>
+            <div id="test-otp" style="font-size: 24px; font-weight: bold; letter-spacing: 2px; margin: 10px 0;">{{ otp }}</div>
+            <p style="color: #856404; font-size: 14px;">This OTP is displayed because your mobile number is not verified with our SMS provider.</p>
+        </div>
+        {% endif %}
+        
+        <div class="info-text">
+            We've sent a 6-digit OTP to your mobile number:<br>
+            <span class="phone" id="user-phone">{{ request.session.user_mobile|default:"Not provided" }}</span>
+        </div>
+        
+        <p>Please enter the OTP below to confirm your booking.</p>
+        
+        <form method="post" action="{% url 'verify_otp' %}">
+            {% csrf_token %}
+            <input type="text" class="otp-input" name="otp" placeholder="Enter 6-digit OTP" maxlength="6" id="otp-input" required>
+            
+            <div class="expiry" id="expiry-timer">OTP expires in: 05:00</div>
+            
+            <div class="buttons">
+                <button type="submit" class="verify-btn">Verify OTP</button>
+                <a href="{% url 'tour' %}" class="cancel-btn">Cancel</a>
+            </div>
+        </form>
+        
+        <div>
+            Didn't receive the OTP? <a href="{% url 'otp' %}" class="resend-link">Resend OTP</a>
+        </div>
+        
+        <div class="help-text">
+            Having trouble? Please check your mobile number or 
+            <a href="{% url 'contact' %}">contact support</a>
+        </div>
+    </div> <br><br>
+
+    <script>
+        // Timer functionality
+        let timeLeft = 300; // 5 minutes in seconds
+        let timer = setInterval(updateTimer, 1000);
+        
+        function updateTimer() {
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                document.getElementById('expiry-timer').textContent = "OTP expired";
+                // We handle expiration on the server
+            } else {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                document.getElementById('expiry-timer').textContent = 
+                    `OTP expires in: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                timeLeft--;
+            }
+        }
+    </script>
+</body>
+</html>
+
+{% endblock %}
