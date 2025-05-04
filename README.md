@@ -1,5 +1,7 @@
 # AudioGuide
 
+SEM 6 Final Project
+
 AudioGuide is a Django-based web application that serves as an audio guide platform for historical or cultural sites. It allows users to listen to audio descriptions in multiple languages through a web interface.
 
 🌟 Features
